@@ -24,14 +24,17 @@ class Player {
             total: 0
         };
     }
-    dicePool(){
-        console.log(`player rolls ${this.citiesBuilt} dice`)
-    }
-    goodsCollected(){
+
+    calculateGoods(){
         console.log(`player collects goods`)
     }
     calculateFood(){
-        
+        this.food = this.food + game.foodRolled - this.citiesBuilt;
+         
+    }
+    calculateWorkers(){
+        this.availableWorkers = this.availableWorkers + game.workersRolled;
+         
     }
     calculateDisaster(){
 
@@ -44,16 +47,43 @@ class Player {
     }
 };
 
+const players = [];
+
+// game object
 const game = {
     newPlayer(){
         setName = prompt('Name your civilization');
         const player1 = new Player(setName);
+        players.push(player1)
         console.log(player1);
     },
     
+    dicePool(){
+        console.log(`player rolls ${this.citiesBuilt} dice`)
+    },
+
+    // temp values space holder
+    foodRolled: 5,
+    workersRolled: 3,
+    goodsRolled: 2,
+    coinsRolled: 7,
+    disastersRolled: 1,
+
+    //collect food function
+    assignResults(){
+        players[0].calculateGoods();
+        players[0].calculateFood();
+        players[0].calculateWorkers();
+        console.log(players);
+    },
+
 };
 
  
 $('#start').on('click', () => {
     game.newPlayer();
+});
+
+$('#rollDice').on('click', () => {
+    game.assignResults();
 });
