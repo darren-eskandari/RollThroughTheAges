@@ -15,7 +15,7 @@ class Player {
         this.totalScore = 0;
         this.totalGoods = 0;
         this.goods = {
-            wood = [1, 3, 6, 10, 15, 21, 28, 36],
+            wood: [1, 3, 6, 10, 15, 21, 28, 36],
             Stone: [2, 6, 12, 20, 30, 42, 56,],
             Pottery: [3, 9, 18, 30, 45, 63],
             Textiles: [4, 12, 24, 40, 60],
@@ -28,8 +28,16 @@ class Player {
     goodsCollected(){
         console.log(`player collects goods`)
     }
-    Calculate Food
-    Calculate Disaster Score
-    Calculate Score
+    calculateFood(){
+        
+    }
+    calculateDisaster(){
 
+    }
+    calculateScore(){
+    
+    }
+    developmentModifiers(){
+    
+    }
 };
