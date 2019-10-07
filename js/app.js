@@ -130,10 +130,12 @@ const game = {
     rollDice(){
         console.log(`player rolls ${players[0].citiesBuilt} dice`);
         for (let i = 0; i < players[0].citiesBuilt; i++){
-            const randomResult = Math.ceil(Math.random * this.diceResults.length);
-            this.diceRolled.push(randomResult);   
+            const randomResult = Math.floor(Math.random() * this.diceResults.length);
+            console.log();
+            // if (randomResult === 'disaster');
+                this.diceRolled.push(this.diceResults[randomResult]);   
         }
-        console.log(this.diceResults);
+        console.log(this.diceRolled);
     },
 
     // temp values space holder to test other game methods while waiting for random dice roll functions
