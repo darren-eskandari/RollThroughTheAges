@@ -107,6 +107,7 @@ class Player {
 };
 
 const players = [];
+// player 1 to be replaced with current player variable later
 
 // game object
 const game = {
@@ -117,17 +118,30 @@ const game = {
         // console.log(player1);
     },
     
-    // dice roll function
-    dicePool(){
-        console.log(`player rolls ${this.citiesBuilt} dice`)
+
+    diceResults: ['food', 'worker', 'disaster'],
+    diceRolled: [],
+    rerolls: [],
+    finalResults: [],
+
+    
+
+    // dice roll function and call assignResults 
+    rollDice(){
+        console.log(`player rolls ${players[0].citiesBuilt} dice`);
+        for (let i = 0; i < players[0].citiesBuilt; i++){
+            const randomResult = Math.ceil(Math.random * this.diceResults.length);
+            this.diceRolled.push(randomResult);   
+        }
+        console.log(this.diceResults);
     },
 
-    // temp values space holder waiting for random dice roll functions
-        foodRolled: 5,
-        workersRolled: 3,
-        goodsRolled: 2,
-        coinsRolled: 7,
-        disastersRolled: 1,
+    // temp values space holder to test other game methods while waiting for random dice roll functions
+        // foodRolled: 5,
+        // workersRolled: 3,
+        // goodsRolled: 2,
+        // coinsRolled: 7,
+        // disastersRolled: 1,
 
     //collect food function
     assignResults(){
@@ -171,5 +185,5 @@ $('#start').on('click', () => {
 });
 
 $('#rollDice').on('click', () => {
-    game.assignResults();
+    game.rollDice();
 });
