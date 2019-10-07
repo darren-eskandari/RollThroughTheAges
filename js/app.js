@@ -1,6 +1,6 @@
 // player class
 class Player {
-    constructor(){
+    constructor(name){
         this.name = name;
         this.isStartPlayer = true;
         this.citiesBuilt = 3;
@@ -8,18 +8,20 @@ class Player {
         this.developmentsCompleted = [];
         this.food = 3;
         this.availableWorkers = 0;
-        this.monumentScore = 0;
-        this.developmentScore = 0;
-        this.bonusScore = 0;
-        this.disasterScore = 0;
-        this.totalScore = 0;
         this.totalGoods = 0;
         this.goods = {
             wood: [1, 3, 6, 10, 15, 21, 28, 36],
-            Stone: [2, 6, 12, 20, 30, 42, 56,],
-            Pottery: [3, 9, 18, 30, 45, 63],
-            Textiles: [4, 12, 24, 40, 60],
-            Weapons: [5, 15, 30, 50]
+            stone: [2, 6, 12, 20, 30, 42, 56,],
+            pottery: [3, 9, 18, 30, 45, 63],
+            textiles: [4, 12, 24, 40, 60],
+            weapons: [5, 15, 30, 50]
+        };
+        this.score = {
+            monuments: 0,
+            developments: 0,
+            bonus: 0, 
+            disaster: 0,
+            total: 0
         };
     }
     dicePool(){
@@ -41,3 +43,17 @@ class Player {
     
     }
 };
+
+const game = {
+    newPlayer(){
+        setName = prompt('Name your civilization');
+        const player1 = new Player(setName);
+        console.log(player1);
+    },
+    
+};
+
+ 
+$('#start').on('click', () => {
+    game.newPlayer();
+});
