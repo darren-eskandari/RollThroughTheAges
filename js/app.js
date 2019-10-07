@@ -26,7 +26,7 @@ class Player {
     }
 
     calculateGoods(){
-        console.log(`player collects goods`)
+        // console.log(`player collects goods`)
     }
     calculateFood(){
         this.food = this.food + game.foodRolled - this.citiesBuilt;
@@ -55,14 +55,15 @@ const game = {
         setName = prompt('Name your civilization');
         const player1 = new Player(setName);
         players.push(player1)
-        console.log(player1);
+        // console.log(player1);
     },
     
+    // dice roll function
     dicePool(){
         console.log(`player rolls ${this.citiesBuilt} dice`)
     },
 
-    // temp values space holder
+    // temp values space holder waiting for random dice roll functions
     foodRolled: 5,
     workersRolled: 3,
     goodsRolled: 2,
@@ -74,9 +75,48 @@ const game = {
         players[0].calculateGoods();
         players[0].calculateFood();
         players[0].calculateWorkers();
-        console.log(players);
+        players[0].calculateDisaster();
+        // console.log(players);
+        console.log(players[0]);
+
     },
 
+    works: {
+        stepPyramid: {
+            progress: 0,
+            complete: 3,
+        },
+        stoneCircle: {
+            progress: 0,
+            complete: 5,
+        },
+        temple: {
+            progress: 0,
+            complete: 7,
+        },
+        obelisk: {
+            progress: 0,
+            complete: 9,
+        },
+        hangingGarden: {
+            progress: 0,
+            complete: 11,
+        },
+        greatWall: {
+            progress: 0,
+            complete: 13,
+        },
+        greatPyramid: {
+            progress: 0,
+            complete: 15,
+        }
+    },
+
+    // build works by assigning available workers
+    buildWorks(){
+
+    },
+    
 };
 
  
