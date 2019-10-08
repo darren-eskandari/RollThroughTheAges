@@ -89,6 +89,10 @@ class Player {
     // }
     calculateFood(){
         this.food = this.food + game.foodRolled - this.citiesBuilt;
+        if (this.food < 0){
+            this.score.disaster += this.food;
+            this.food = 0;
+        }
          
     }
     calculateWorkers(){
@@ -96,7 +100,7 @@ class Player {
         
     }
     calculateDisaster(){
-        this.score.disaster = this.score.disaster - game.disastersRolled
+        this.score.disaster -= game.disastersRolled;
     }
     calculateScore(){
     
@@ -213,8 +217,8 @@ const game = {
         for (let i = 0; i < this.finalResults.length; i++){
             if (this.finalResults[i].result === 'disaster'){
                 this.disastersRolled = this.disastersRolled + this.finalResults[i].amount;
-                this.workersRolled = this.workersRolled + this.finalResults[i].amount;
-                this.foodRolled = this.foodRolled + this.finalResults[i].amount;
+                // this.workersRolled = this.workersRolled + this.finalResults[i].amount;
+                // this.foodRolled = this.foodRolled + this.finalResults[i].amount;
             } else if (this.finalResults[i].result === 'food'){
                 this.foodRolled = this.foodRolled + this.finalResults[i].amount;
             } else if (this.finalResults[i].result === 'worker'){
