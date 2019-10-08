@@ -127,32 +127,32 @@ const game = {
         {
             result: 'disaster',
             amount: 1,
-            img: ''
+            image: 'images/disaster.png'
         }, 
         {
             result: 'food',
             amount: 3,
-            img: ''
+            image: 'images/food3.png'
         }, 
         {
             result: 'worker',
             amount: 3,
-            img: ''
+            image: 'images/workers3.png'
         }, 
         {
             result: 'food',
             amount: 2,
-            img: ''
+            image: 'images/food2.png'
         }, 
         {
             result: 'worker',
             amount: 2,
-            img: ''
+            image: 'images/workers2.png'
         }, 
         {
             result: 'both',
             amount: 2,
-            img: ''
+            image: 'images/both.png'
         }, 
     ],
     
@@ -167,29 +167,38 @@ const game = {
             const randomResult = Math.floor(Math.random() * this.diceResults.length);
             if (randomResult === 0){
                 this.finalResults.push(this.diceResults[randomResult]);
-                $('#finalResults').text(this.finalResults.map(e=> e.result));
             } else {
-                this.diceRolled.push(this.diceResults[randomResult]);   
-                $('#results').text(this.diceRolled.map(e=> e.result));
+                this.diceRolled.push(this.diceResults[randomResult]);
             }
         };
+        this.finalResults.map(item => {
+            $('#finalResults').append(`<img src="${item.image}">`);
+        });
+        this.diceRolled.map(item =>{
+            $('#results').append(`<img src="${item.image}">`)
+        });
         this.rerollDice();
     },
 
     // reroll option to be expanded to allow for individual selection, time willing
     rerollDice(){
         $('#results').on('click', () => {
+            $('#results').text('');
             for (let i = 0; i < this.diceRolled.length; i++){
                 const randomResult = Math.floor(Math.random() * this.diceResults.length);
                 if (randomResult === 0){  
                     this.finalResults.push(this.diceResults[randomResult]);
-                    $('#finalResults').text(this.finalResults.map(e=> e.result));
                 } else {
                     this.diceRerolled.push(this.diceResults[randomResult]);   
-                    $('#rerolls').text(this.diceRerolled.map(e=> e.result));
                 }
             }
-            $('#results').text('');
+            $('#finalResults').text('');
+            this.finalResults.map(item => {
+                $('#finalResults').append(`<img src="${item.image}">`);
+            });
+            this.diceRerolled.map(item =>{
+                $('#rerolls').append(`<img src="${item.image}">`)
+            });
             this.secondReroll();
         });
     },
@@ -200,8 +209,11 @@ const game = {
                 const randomResult = Math.floor(Math.random() * this.diceResults.length);
                 this.finalResults.push(this.diceResults[randomResult]);
                 $('#rerolls').text('');
-                $('#finalResults').text(this.finalResults.map(e=> e.result));
             }
+            $('#finalResults').text('');
+            this.finalResults.map(item => {
+                $('#finalResults').append(`<img src="${item.image}">`);
+            });
         });
     },
 
