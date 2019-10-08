@@ -93,10 +93,10 @@ class Player {
     }
     calculateWorkers(){
         this.availableWorkers = game.workersRolled;
-         
+        
     }
     calculateDisaster(){
-
+        this.score.disaster = this.score.disaster - game.disastersRolled
     }
     calculateScore(){
     
@@ -117,14 +117,29 @@ const game = {
         players.push(player1)
         // console.log(player1);
     },
-    
 
-    diceResults: ['food', 'worker', 'disaster'],
+    diceResults: 
+    [
+        {
+            result: 'food',
+            amount: 3,
+            img: ''
+        }, 
+        {
+            result: 'worker',
+            amount: 3,
+            img: ''
+        }, 
+        {
+            result: 'disaster',
+            amount: 1,
+            img: ''
+        }, 
+    ],
+    
     diceRolled: [],
     rerolls: [],
     finalResults: [],
-
-    
 
     // dice roll function and call assignResults 
     rollDice(){
@@ -132,10 +147,24 @@ const game = {
         for (let i = 0; i < players[0].citiesBuilt; i++){
             const randomResult = Math.floor(Math.random() * this.diceResults.length);
             console.log();
-            // if (randomResult === 'disaster');
-                this.diceRolled.push(this.diceResults[randomResult]);   
-        }
+            if (randomResult === 2){
+                this.finalResults.push(this.diceResults[randomResult].result);
+                $('#finalResults').text(this.finalResults);
+                console.log(this.finalResults);
+            } else {
+                this.diceRolled.push(this.diceResults[randomResult].result);   
+                $('#results').text(this.diceRolled);
+            }
+        };
         console.log(this.diceRolled);
+        this.rerollDice();
+    },
+
+    // reroll option to be expanded to allow for individual selection, time willing
+    rerollDice(){
+        $('#results').on('click', () => {
+            
+        })
     },
 
     // temp values space holder to test other game methods while waiting for random dice roll functions
