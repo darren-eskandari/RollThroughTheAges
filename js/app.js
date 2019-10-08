@@ -152,15 +152,15 @@ const game = {
         for (let i = 0; i < players[0].citiesBuilt; i++){
             const randomResult = Math.floor(Math.random() * this.diceResults.length);
             if (randomResult === 0){
-                this.finalResults.push(this.diceResults[randomResult].result);
-                $('#finalResults').text(this.finalResults);
+                this.finalResults.push(this.diceResults[randomResult]);
+                $('#finalResults').text(this.finalResults.map(e=> e.result));
             } else {
-                this.diceRolled.push(this.diceResults[randomResult].result);   
-                $('#results').text(this.diceRolled);
+                this.diceRolled.push(this.diceResults[randomResult]);   
+                $('#results').text(this.diceRolled.map(e=> e.result));
             }
         };
-        console.log(this.finalResults, '<- final results');
-        console.log(this.diceRolled, '<- current results');
+        // console.log(this.finalResults, '<- final results');
+        // console.log(this.diceRolled, '<- current results');
         this.rerollDice();
     },
 
@@ -170,16 +170,16 @@ const game = {
             for (let i = 0; i < this.diceRolled.length; i++){
                 const randomResult = Math.floor(Math.random() * this.diceResults.length);
                 if (randomResult === 0){  
-                    this.finalResults.push(this.diceResults[randomResult].result);
-                    $('#finalResults').text(this.finalResults);
+                    this.finalResults.push(this.diceResults[randomResult]);
+                    $('#finalResults').text(this.finalResults.map(e=> e.result));
                 } else {
-                    this.diceRerolled.push(this.diceResults[randomResult].result);   
-                    $('#rerolls').text(this.diceRerolled);
+                    this.diceRerolled.push(this.diceResults[randomResult]);   
+                    $('#rerolls').text(this.diceRerolled.map(e=> e.result));
                 }
             }
             $('#results').text('');
-            console.log(this.finalResults, '<- final results');
-            console.log(this.diceRerolled, '<- current results');
+            // console.log(this.finalResults, '<- final results');
+            // console.log(this.diceRerolled, '<- current results');
             this.secondReroll();
         });
     },
@@ -188,24 +188,24 @@ const game = {
         $('#rerolls').on('click', () => {
             for (let i = 0; i < this.diceRerolled.length; i++){
                 const randomResult = Math.floor(Math.random() * this.diceResults.length);
-                this.finalResults.push(this.diceResults[randomResult].result);
+                this.finalResults.push(this.diceResults[randomResult]);
                 $('#rerolls').text('');
-                $('#finalResults').text(this.finalResults);
-                console.log(this.finalResults, '<- final results');
+                $('#finalResults').text(this.finalResults.map(e=> e.result));
+                // console.log(this.finalResults, '<- final results');
             }
         });
     },
 
     // temp values space holder to test other game methods while waiting for random dice roll functions
-        // foodRolled: 5,
-        // workersRolled: 3,
-        // goodsRolled: 2,
-        // coinsRolled: 7,
-        // disastersRolled: 1,
+        foodRolled: 5,
+        workersRolled: 3,
+        goodsRolled: 2,
+        coinsRolled: 7,
+        disastersRolled: 1,
 
     //collect food function
     assignResults(){
-        players[0].calculateGoods();
+        // players[0].calculateGoods();
         players[0].calculateFood();
         players[0].calculateWorkers();
         players[0].calculateDisaster();
