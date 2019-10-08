@@ -131,6 +131,11 @@ const game = {
             img: ''
         }, 
         {
+            result: 'food/worker',
+            amount: 2,
+            img: ''
+        }, 
+        {
             result: 'disaster',
             amount: 1,
             img: ''
@@ -138,7 +143,7 @@ const game = {
     ],
     
     diceRolled: [],
-    rerolls: [],
+    diceRerolled: [],
     finalResults: [],
 
     // dice roll function and call assignResults 
@@ -147,7 +152,7 @@ const game = {
         for (let i = 0; i < players[0].citiesBuilt; i++){
             const randomResult = Math.floor(Math.random() * this.diceResults.length);
             console.log();
-            if (randomResult === 2){
+            if (randomResult === 3){
                 this.finalResults.push(this.diceResults[randomResult].result);
                 $('#finalResults').text(this.finalResults);
                 console.log(this.finalResults);
@@ -163,8 +168,30 @@ const game = {
     // reroll option to be expanded to allow for individual selection, time willing
     rerollDice(){
         $('#results').on('click', () => {
-            
-        })
+            for (let i = 0; i < this.diceRolled.length; i++){
+                const randomResult = Math.floor(Math.random() * this.diceResults.length);
+                if (randomResult === 3){
+                    this.finalResults.push(this.diceResults[randomResult].result);
+                    $('#finalResults').text(this.finalResults);
+                } else {
+                    this.diceRerolled.push(this.diceResults[randomResult].result);   
+                    $('#results').text(this.diceRerolled);
+
+                }
+            }
+            this.secondReroll();
+        });
+    },
+
+    secondReroll(){
+        $('#results').on('click', () => {
+            for (let i = 0; i < this.diceRerolled.length; i++){
+                const randomResult = Math.floor(Math.random() * this.diceResults.length);
+                this.finalResults.push(this.diceResults[randomResult].result);
+                $('#results').text('');
+                $('#finalResults').text(this.finalResults);
+            }
+        });
     },
 
     // temp values space holder to test other game methods while waiting for random dice roll functions
