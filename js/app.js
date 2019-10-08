@@ -3,7 +3,7 @@ class Player {
     constructor(name){
         this.name = name;
         this.isStartPlayer = true;
-        this.citiesBuilt = 3;
+        this.citiesBuilt = 7;
         this.monumentsBuilt = [];
         // this.developmentsCompleted = [];
         this.food = 3;
@@ -136,7 +136,17 @@ const game = {
             img: ''
         }, 
         {
-            result: 'food/worker',
+            result: 'food',
+            amount: 2,
+            img: ''
+        }, 
+        {
+            result: 'worker',
+            amount: 2,
+            img: ''
+        }, 
+        {
+            result: 'both',
             amount: 2,
             img: ''
         }, 
@@ -159,8 +169,6 @@ const game = {
                 $('#results').text(this.diceRolled.map(e=> e.result));
             }
         };
-        // console.log(this.finalResults, '<- final results');
-        // console.log(this.diceRolled, '<- current results');
         this.rerollDice();
     },
 
@@ -178,8 +186,6 @@ const game = {
                 }
             }
             $('#results').text('');
-            // console.log(this.finalResults, '<- final results');
-            // console.log(this.diceRerolled, '<- current results');
             this.secondReroll();
         });
     },
@@ -191,20 +197,34 @@ const game = {
                 this.finalResults.push(this.diceResults[randomResult]);
                 $('#rerolls').text('');
                 $('#finalResults').text(this.finalResults.map(e=> e.result));
-                // console.log(this.finalResults, '<- final results');
             }
         });
     },
 
-    // temp values space holder to test other game methods while waiting for random dice roll functions
-        foodRolled: 5,
-        workersRolled: 3,
-        goodsRolled: 2,
-        coinsRolled: 7,
-        disastersRolled: 1,
+    // rolled values
+        foodRolled: 0,
+        workersRolled: 0,
+        // goodsRolled: 0,
+        // coinsRolled: 0,
+        disastersRolled: 0,
 
     //collect food function
     assignResults(){
+        for (let i = 0; i < this.finalResults.length; i++){
+            if (this.finalResults[i].result === 'disaster'){
+                this.disastersRolled = this.disastersRolled + this.finalResults[i].amount;
+                this.workersRolled = this.workersRolled + this.finalResults[i].amount;
+                this.foodRolled = this.foodRolled + this.finalResults[i].amount;
+            } else if (this.finalResults[i].result === 'food'){
+                this.foodRolled = this.foodRolled + this.finalResults[i].amount;
+            } else if (this.finalResults[i].result === 'worker'){
+                this.workersRolled = this.workersRolled + this.finalResults[i].amount;
+            } else if (this.finalResults[i].result === 'both'){
+                this.workersRolled = this.workersRolled + this.finalResults[i].amount;
+                this.foodRolled = this.foodRolled + this.finalResults[i].amount;
+            }
+        }
+
         // players[0].calculateGoods();
         players[0].calculateFood();
         players[0].calculateWorkers();
