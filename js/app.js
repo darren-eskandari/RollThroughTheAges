@@ -3,7 +3,7 @@ class Player {
     constructor(name){
         this.name = name;
         this.isStartPlayer = true;
-        this.citiesBuilt = 7;
+        this.citiesBuilt = 3;
         this.monumentsBuilt = [];
         // this.developmentsCompleted = [];
         this.food = 3;
@@ -100,7 +100,13 @@ class Player {
         
     }
     calculateDisaster(){
-        this.score.disaster -= game.disastersRolled;
+        if (game.disastersRolled === 1){
+            // no results
+        } else if(game.disastersRolled === 3){
+            // results effect other players
+        } else {
+            this.score.disaster -= game.disastersRolled;
+        }
     }
     calculateScore(){
     
