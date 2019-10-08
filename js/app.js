@@ -121,6 +121,11 @@ const game = {
     diceResults: 
     [
         {
+            result: 'disaster',
+            amount: 1,
+            img: ''
+        }, 
+        {
             result: 'food',
             amount: 3,
             img: ''
@@ -135,11 +140,6 @@ const game = {
             amount: 2,
             img: ''
         }, 
-        {
-            result: 'disaster',
-            amount: 1,
-            img: ''
-        }, 
     ],
     
     diceRolled: [],
@@ -148,20 +148,19 @@ const game = {
 
     // dice roll function and call assignResults 
     rollDice(){
-        console.log(`player rolls ${players[0].citiesBuilt} dice`);
+        // console.log(`player rolls ${players[0].citiesBuilt} dice`);
         for (let i = 0; i < players[0].citiesBuilt; i++){
             const randomResult = Math.floor(Math.random() * this.diceResults.length);
-            console.log();
-            if (randomResult === 3){
+            if (randomResult === 0){
                 this.finalResults.push(this.diceResults[randomResult].result);
                 $('#finalResults').text(this.finalResults);
-                console.log(this.finalResults);
             } else {
                 this.diceRolled.push(this.diceResults[randomResult].result);   
                 $('#results').text(this.diceRolled);
             }
         };
-        console.log(this.diceRolled);
+        console.log(this.finalResults, '<- final results');
+        console.log(this.diceRolled, '<- current results');
         this.rerollDice();
     },
 
@@ -170,26 +169,29 @@ const game = {
         $('#results').on('click', () => {
             for (let i = 0; i < this.diceRolled.length; i++){
                 const randomResult = Math.floor(Math.random() * this.diceResults.length);
-                if (randomResult === 3){
+                if (randomResult === 0){  
                     this.finalResults.push(this.diceResults[randomResult].result);
                     $('#finalResults').text(this.finalResults);
                 } else {
                     this.diceRerolled.push(this.diceResults[randomResult].result);   
-                    $('#results').text(this.diceRerolled);
-
+                    $('#rerolls').text(this.diceRerolled);
                 }
             }
+            $('#results').text('');
+            console.log(this.finalResults, '<- final results');
+            console.log(this.diceRerolled, '<- current results');
             this.secondReroll();
         });
     },
 
     secondReroll(){
-        $('#results').on('click', () => {
+        $('#rerolls').on('click', () => {
             for (let i = 0; i < this.diceRerolled.length; i++){
                 const randomResult = Math.floor(Math.random() * this.diceResults.length);
                 this.finalResults.push(this.diceResults[randomResult].result);
-                $('#results').text('');
+                $('#rerolls').text('');
                 $('#finalResults').text(this.finalResults);
+                console.log(this.finalResults, '<- final results');
             }
         });
     },
