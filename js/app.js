@@ -50,36 +50,43 @@ class Player {
             progress: 0,
             complete: 3,
             completed: false,
+            score: 1,
         },
         stoneCircle: {
             progress: 0,
             complete: 5,
             completed: false,
+            score: 2,
         },
         temple: {
             progress: 0,
             complete: 7,
             completed: false,
+            score: 4,
         },
         obelisk: {
             progress: 0,
             complete: 9,
             completed: false,
+            score: 6,
         },
         hangingGarden: {
             progress: 0,
             complete: 11,
             completed: false,
+            score: 8,
         },
         greatWall: {
             progress: 0,
             complete: 13,
             completed: false,
+            score: 10,
         },
         greatPyramid: {
             progress: 0,
             complete: 15,
             completed: false,
+            score: 12,
         }
     }
 
@@ -162,65 +169,109 @@ const game = {
         }, 
     ],
     
-    diceRolled: [],
-    diceRerolled: [],
-    finalResults: [],
+    firstResult: [],
+    rerollResult: [],
+    finalResult: [],
 
-    // dice roll function and call assignResults 
+    // initial dice roll
     rollDice(){
-        // console.log(`player rolls ${players[0].citiesBuilt} dice`);
         for (let i = 0; i < players[0].citiesBuilt; i++){
             const randomResult = Math.floor(Math.random() * this.diceResults.length);
             if (randomResult === 0){
-                this.finalResults.push(this.diceResults[randomResult]);
+                this.finalResult.push(this.diceResults[randomResult]);
             } else {
-                this.diceRolled.push(this.diceResults[randomResult]);
+                this.firstResult.push(this.diceResults[randomResult]);
             }
         };
-        this.finalResults.map(item => {
-            $('#finalResults').append(`<img src="${item.image}">`);
+        this.finalResult.map(item => {
+            $('#finalResult').append(`<img src="${item.image}">`);
         });
-        this.diceRolled.map(item =>{
-            $('#results').append(`<img src="${item.image}">`)
+        this.firstResult.map(item =>{
+            $('#firstResults').append(`<img src="${item.image}">`)
         });
-        this.rerollDice();
+
+        // skip rerolls and assign results
+        $('.rolls').append('<div id="keepRoll">keep results</div>');
+        $('#keepRoll').on('click', () => {
+            $('#keepRoll').off('click').text('');
+            $('#rerollDice').off('click').text('');
+            for (let i = 0; i < this.firstResult.length; i++){
+                this.finalResult.push(this.firstResult[i]);
+                $('#firstResults').text('');
+            }
+            $('#finalResult').text('');
+            this.finalResult.map(item => {
+                $('#finalResult').append(`<img src="${item.image}">`);
+            });
+            this.assignResults();
+        });
+
+         // call the first reroll method
+         $('.rolls').append('<div id="rerollDice">reroll results</div>');
+         $('#rerollDice').on('click', () => {
+            $('#keepRoll').off('click').text('');
+            $('#rerollDice').off('click').text('');
+            $('#firstResults').text('');
+            this.firstReroll();
+         });
     },
 
-    // reroll option to be expanded to allow for individual selection, time willing
-    rerollDice(){
-        $('#results').on('click', () => {
-            $('#results').text('');
-            for (let i = 0; i < this.diceRolled.length; i++){
-                const randomResult = Math.floor(Math.random() * this.diceResults.length);
-                if (randomResult === 0){  
-                    this.finalResults.push(this.diceResults[randomResult]);
-                } else {
-                    this.diceRerolled.push(this.diceResults[randomResult]);   
-                }
+    // first reroll method ** eventually expand to allow selective rerolls **
+    firstReroll(){
+        // generate reroll results
+        for (let i = 0; i < this.firstResult.length; i++){
+            const randomResult = Math.floor(Math.random() * this.diceResults.length);
+            if (randomResult === 0){  
+                this.finalResult.push(this.diceResults[randomResult]);
+            } else {
+                this.rerollResult.push(this.diceResults[randomResult]);   
             }
-            $('#finalResults').text('');
-            this.finalResults.map(item => {
-                $('#finalResults').append(`<img src="${item.image}">`);
-            });
-            this.diceRerolled.map(item =>{
-                $('#rerolls').append(`<img src="${item.image}">`)
-            });
-            this.secondReroll();
+        }
+        $('#finalResult').text('');
+        this.finalResult.map(item => {
+            $('#finalResult').append(`<img src="${item.image}">`);
         });
+        this.rerollResult.map(item =>{
+            $('#rerollResults').append(`<img src="${item.image}">`)
+        });
+
+        // skip second reroll and assign results
+        $('.rolls').append('<div id="keepReroll">keep results</div>');
+        $('#keepReroll').on('click', () => {
+            $('#keepReroll').off('click').text('');
+            $('#rerollAgain').off('click').text('');
+            for (let i = 0; i < this.rerollResult.length; i++){
+                this.finalResult.push(this.rerollResult[i]);
+                $('#rerollResults').text('');
+            }
+            $('#finalResult').text('');
+            this.finalResult.map(item => {
+                $('#finalResult').append(`<img src="${item.image}">`);
+            });
+            this.assignResults();
+        });
+
+        // call second reroll 
+        $('.rolls').append('<div id="rerollAgain">reroll results</div>');
+        $('#rerollAgain').on('click', () => {
+            $('#keepReroll').off('click').text('');
+            $('#rerollAgain').off('click').text('');
+            $('#firstResults').text('');
+            this.secondReroll();
+        });        
     },
 
     secondReroll(){
-        $('#rerolls').on('click', () => {
-            for (let i = 0; i < this.diceRerolled.length; i++){
-                const randomResult = Math.floor(Math.random() * this.diceResults.length);
-                this.finalResults.push(this.diceResults[randomResult]);
-                $('#rerolls').text('');
-            }
-            $('#finalResults').text('');
-            this.finalResults.map(item => {
-                $('#finalResults').append(`<img src="${item.image}">`);
-            });
+        for (let i = 0; i < this.rerollResult.length; i++){
+            const randomResult = Math.floor(Math.random() * this.diceResults.length);
+            this.finalResult.push(this.diceResults[randomResult]);
+            $('#rerollResults').text('');
+        }
+        $('#finalResult').text('');
+        this.finalResult.map(item => {
+            $('#finalResult').append(`<img src="${item.image}">`);
         });
+        this.assignResults();
     },
 
     // rolled values
@@ -232,18 +283,16 @@ const game = {
 
     //collect food function
     assignResults(){
-        for (let i = 0; i < this.finalResults.length; i++){
-            if (this.finalResults[i].result === 'disaster'){
-                this.disastersRolled = this.disastersRolled + this.finalResults[i].amount;
-                // this.workersRolled = this.workersRolled + this.finalResults[i].amount;
-                // this.foodRolled = this.foodRolled + this.finalResults[i].amount;
-            } else if (this.finalResults[i].result === 'food'){
-                this.foodRolled = this.foodRolled + this.finalResults[i].amount;
-            } else if (this.finalResults[i].result === 'worker'){
-                this.workersRolled = this.workersRolled + this.finalResults[i].amount;
-            } else if (this.finalResults[i].result === 'both'){
-                this.workersRolled = this.workersRolled + this.finalResults[i].amount;
-                this.foodRolled = this.foodRolled + this.finalResults[i].amount;
+        for (let i = 0; i < this.finalResult.length; i++){
+            if (this.finalResult[i].result === 'disaster'){
+                this.disastersRolled = this.disastersRolled + this.finalResult[i].amount;
+            } else if (this.finalResult[i].result === 'food'){
+                this.foodRolled = this.foodRolled + this.finalResult[i].amount;
+            } else if (this.finalResult[i].result === 'worker'){
+                this.workersRolled = this.workersRolled + this.finalResult[i].amount;
+            } else if (this.finalResult[i].result === 'both'){
+                this.workersRolled = this.workersRolled + this.finalResult[i].amount;
+                this.foodRolled = this.foodRolled + this.finalResult[i].amount;
             }
         }
 
@@ -252,13 +301,14 @@ const game = {
         players[0].calculateWorkers();
         players[0].calculateDisaster();
         // console.log(players);
-        console.log(players[0]);
+        // console.log(players[0]);
 
     },
 
     // build works by assigning available workers
     buildWorks(){
         // assign workers from available pool to works and check for completion
+
     },
     
     // sell goods and use coins to build developments
@@ -284,8 +334,10 @@ const game = {
 $('#start').on('click', () => {
     // when adding additional player functionality, create a conditional that limits maximum number of players
     game.newPlayer();
+    $('#start').off('click').text('');
 });
 
 $('#rollDice').on('click', () => {
     game.rollDice();
+    $('#rollDice').off('click').text('');
 });
