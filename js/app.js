@@ -348,29 +348,29 @@ const game = {
             // $('.works').on('click', (e) => {
             //     console.log(e.target);
             // });
-        // $('.work').hover( () {
-
-        // });
-
         $('.works').on('click', e => {
-    
             if(e.target.nodeName !== 'SELECT') {
                 $('.numOfWork').detach();
                 const $parent = $(`#${$(e.target).parent().attr('id')}`);
                 const work = players[0].works[$(e.target).parent().attr('id')] || 0;
                 const dropDown = createDropDown(players[0].availableWorkers, work.complete);
                 $parent.append(dropDown)
-                // selecting a value from the dropdown
                 // $('select').on('change', (e) => console.log(e.target.value));
-                $('select').on('change', (e) => console.log(e.target.value));
-                $('select').on('change', (e) => console.log(e.target.parentNode.id));
+                // $('select').on('change', (e) => console.log(e.target.parentNode.id));
                 $('select').change((e) => { 
+                    // const targetProgress = players[0].works[`${e.target.parentNode.id}`].progress;
+                    // console.log(targetProgress, 'target progress')
                     players[0].availableWorkers -= e.target.value;
                     players[0].works[`${e.target.parentNode.id}`].progress += Number(e.target.value);
-                    this.render();
+                    if (players[0].works[`${e.target.parentNode.id}`].progress === players[0].works[`${e.target.parentNode.id}`].complete){
+                        players[0].works[`${e.target.parentNode.id}`].completed = true
+                        }
+                        this.render();
+                    if (players[0].availableWorkers === 0) {
+                        this.endTurn();
+                    }
                 });
             }
-        
         });
         
         const createDropDown = (numOfWorkers, maxNum) => {
@@ -381,9 +381,8 @@ const game = {
             }
             return $select;
         };
-
     },
-    
+
     // // sell goods and use coins to build developments
     // purchaseDevelopments(){
     //     // allow player to sell goods, add coins, and purchase a single development
@@ -399,6 +398,7 @@ const game = {
     // all functions that occur at end of turn
     endTurn(){
         // calls score calculation functions and checks for end of game triggers.
+        console.log(players[0].works);
     },
 
     // render game state
@@ -409,22 +409,22 @@ const game = {
         $('#workers').text(`Available Workers: ${players[0].availableWorkers}`);
         
         // works - cities
-        $('#city1').html(`<img src="${players[0].works.city1.image}">`);
-        $('#city2').html(`<img src="${players[0].works.city2.image}">`);
-        $('#city3').html(`<img src="${players[0].works.city3.image}">`);
+        $('#city1').html(`<img src="${players[0].works.city1.image}"><br>`);
+        $('#city2').html(`<img src="${players[0].works.city2.image}"><br>`);
+        $('#city3').html(`<img src="${players[0].works.city3.image}"><br>`);
         $('#city4').html(`<img src="${players[0].works.city4.image}"><br>${players[0].works.city4.progress}/${players[0].works.city4.complete}`);
         $('#city5').html(`<img src="${players[0].works.city5.image}"><br>${players[0].works.city5.progress}/${players[0].works.city5.complete}`);
         $('#city6').html(`<img src="${players[0].works.city6.image}"><br>${players[0].works.city6.progress}/${players[0].works.city6.complete}`);
         $('#city7').html(`<img src="${players[0].works.city7.image}"><br>${players[0].works.city7.progress}/${players[0].works.city7.complete}`);
         
         // works - monuments
-        $('#stepPyramid').html(`<img src="${players[0].works.stepPyramid.image}"> ${players[0].works.stepPyramid.progress}/${players[0].works.stepPyramid.complete}`)
-        $('#stoneCircle').html(`<img src="${players[0].works.stoneCircle.image}"> ${players[0].works.stoneCircle.progress}/${players[0].works.stoneCircle.complete}`)
-        $('#temple').html(`<img src="${players[0].works.temple.image}"> ${players[0].works.temple.progress}/${players[0].works.temple.complete}`)
-        $('#obelisk').html(`<img src="${players[0].works.obelisk.image}"> ${players[0].works.obelisk.progress}/${players[0].works.obelisk.complete}`)
-        $('#hangingGarden').html(`<img src="${players[0].works.hangingGarden.image}"> ${players[0].works.hangingGarden.progress}/${players[0].works.hangingGarden.complete}`)
-        $('#greatWall').html(`<img src="${players[0].works.greatWall.image}"> ${players[0].works.greatWall.progress}/${players[0].works.greatWall.complete}`)
-        $('#greatPyramid').html(`<img src="${players[0].works.greatPyramid.image}"> ${players[0].works.greatPyramid.progress}/${players[0].works.greatPyramid.complete}`)
+        $('#stepPyramid').html(`<img src="${players[0].works.stepPyramid.image}"><br> ${players[0].works.stepPyramid.progress}/${players[0].works.stepPyramid.complete}`)
+        $('#stoneCircle').html(`<img src="${players[0].works.stoneCircle.image}"><br> ${players[0].works.stoneCircle.progress}/${players[0].works.stoneCircle.complete}`)
+        $('#temple').html(`<img src="${players[0].works.temple.image}"><br> ${players[0].works.temple.progress}/${players[0].works.temple.complete}`)
+        $('#obelisk').html(`<img src="${players[0].works.obelisk.image}"><br> ${players[0].works.obelisk.progress}/${players[0].works.obelisk.complete}`)
+        $('#hangingGarden').html(`<img src="${players[0].works.hangingGarden.image}"><br> ${players[0].works.hangingGarden.progress}/${players[0].works.hangingGarden.complete}`)
+        $('#greatWall').html(`<img src="${players[0].works.greatWall.image}"><br> ${players[0].works.greatWall.progress}/${players[0].works.greatWall.complete}`)
+        $('#greatPyramid').html(`<img src="${players[0].works.greatPyramid.image}"><br> ${players[0].works.greatPyramid.progress}/${players[0].works.greatPyramid.complete}`)
 
         // score
         $('score').prepend('<div/>').text('Score');

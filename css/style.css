@@ -39,14 +39,19 @@ img {
 }
 
 /* .works:focus 
-    background-blend-mode: darken;*/
+background-blend-mode: darken;*/
 
 #monumentsContainer {
     display: flex;
     flex-wrap: wrap;
 };
 
- div {
+.monumentsContainer div {
+    margin: 0 5px;
+    text-align: center;
+}
+
+div {
     flex-wrap: wrap;
 }
 
