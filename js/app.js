@@ -355,23 +355,32 @@ const game = {
         $('.works').on('click', e => {
     
             if(e.target.nodeName !== 'SELECT') {
-                $('.numOfWork').detach()
-                const $parent = $(`#${$(e.target).parent().attr('id')}`)
-                const work = players[0].works[$(e.target).parent().attr('id')] || 0
-                const dropDown = createDropDown(players[0].availableWorkers, work.complete)
+                $('.numOfWork').detach();
+                const $parent = $(`#${$(e.target).parent().attr('id')}`);
+                const work = players[0].works[$(e.target).parent().attr('id')] || 0;
+                const dropDown = createDropDown(players[0].availableWorkers, work.complete);
                 $parent.append(dropDown)
-                $('select').on('change', (e) => console.log(e.target.value))
+                // selecting a value from the dropdown
+                // $('select').on('change', (e) => console.log(e.target.value));
+                $('select').on('change', (e) => console.log(e.target.value));
+                $('select').on('change', (e) => console.log(e.target.parentNode.id));
+                $('select').change((e) => { 
+                    players[0].availableWorkers -= e.target.value;
+                    players[0].works[`${e.target.parentNode.id}`].progress += Number(e.target.value);
+                    this.render();
+                });
             }
-        })
+        
+        });
         
         const createDropDown = (numOfWorkers, maxNum) => {
-            const $select = $("<select class='numOfWork'></select>")
-            const max = numOfWorkers < maxNum ? numOfWorkers : maxNum
-            for(let i = 0; i < max; i++) {
-                $select.append(`<option value=${i+1}>${i + 1}</option>`)
+            const $select = $("<select class='numOfWork'></select>");
+            const max = numOfWorkers < maxNum ? numOfWorkers : maxNum;
+            for(let i = 0; i <= max; i++) {
+                $select.append(`<option value=${i}>${i}</option>`);
             }
-            return $select
-        }
+            return $select;
+        };
 
     },
     
