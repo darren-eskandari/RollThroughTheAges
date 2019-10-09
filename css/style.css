@@ -4,7 +4,7 @@ body {
     padding: 20px;
 }
 
-.cities img {
+img {
     width: 40px; 
     margin: 0 4px;
 };
@@ -20,11 +20,10 @@ body {
 };
 
 .monuments div {
-    display: flexbox;
     flex-wrap: wrap;
 }
 
 .monuments img {
-    width: 100px;
-
+    width: 50px;
+    height: 50px;
 }
