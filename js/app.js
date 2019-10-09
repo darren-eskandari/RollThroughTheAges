@@ -363,9 +363,11 @@ const game = {
                     players[0].availableWorkers -= e.target.value;
                     players[0].works[`${e.target.parentNode.id}`].progress += Number(e.target.value);
                     if (players[0].works[`${e.target.parentNode.id}`].progress === players[0].works[`${e.target.parentNode.id}`].complete){
-                        players[0].works[`${e.target.parentNode.id}`].completed = true
-                        }
-                        this.render();
+                        players[0].works[`${e.target.parentNode.id}`].completed = true;
+                        players[0].score.monuments += players[0].works[`${e.target.parentNode.id}`].score;
+                        players[0].calculateScore();
+                    }
+                    this.render();
                     if (players[0].availableWorkers === 0) {
                         this.endTurn();
                     }
