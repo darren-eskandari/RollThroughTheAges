@@ -1,4 +1,30 @@
-img {
+body {
+    width: 500px;
+    margin: auto;
+    padding: 20px;
+}
+
+.cities img {
+    width: 40px; 
+    margin: 0 4px;
+};
+
+.rolls img {
     width: 40px;
     margin: 0 2px;
+};
+
+.monuments {
+    display: flex;
+    flex-wrap: wrap;
+};
+
+.monuments div {
+    display: flexbox;
+    flex-wrap: wrap;
+}
+
+.monuments img {
+    width: 100px;
+
 }
