@@ -146,7 +146,7 @@ class Player {
         this.availableWorkers = game.val.workers;
     }
     calculateScore(){
-        
+        this.score.total = this.score.monuments + this.score.disaster
     }
     // calculateGoods(){
     //  console.log(`player collects goods`)
@@ -336,14 +336,20 @@ const game = {
         players[0].calculateWorkers();
         players[0].calculateDisaster();
         // players[0].calculateGoods();
+        players[0].calculateScore();
+
 
         this.render();
+        this.buildWorks();
     },
 
     // build works by assigning available workers
     buildWorks(){
         // assign workers from available pool to works and check for completion
-
+        $('.works').on('click', (e) => {
+            console.log(e.target);
+        });
+        
     },
     
     // // sell goods and use coins to build developments
@@ -365,10 +371,12 @@ const game = {
 
     // render game state
     render(){
+        // player info
         $('#name').text(`Player: ${players[0].name}`);
         $('#food').text(`Food: ${players[0].food}`);
         $('#workers').text(`Available Workers: ${players[0].availableWorkers}`);
         
+        // works - cities
         $('#city1').html(`<img src="${players[0].works.city1.image}">`);
         $('#city2').html(`<img src="${players[0].works.city2.image}">`);
         $('#city3').html(`<img src="${players[0].works.city3.image}">`);
@@ -377,6 +385,7 @@ const game = {
         $('#city6').html(`<img src="${players[0].works.city6.image}"> ${players[0].works.city6.progress}/${players[0].works.city6.complete}`);
         $('#city7').html(`<img src="${players[0].works.city7.image}"> ${players[0].works.city7.progress}/${players[0].works.city7.complete}`);
         
+        // works - monuments
         $('#stepPyramid').html(`<img src="${players[0].works.stepPyramid.image}"> ${players[0].works.stepPyramid.progress}/${players[0].works.stepPyramid.complete}`)
         $('#stoneCircle').html(`<img src="${players[0].works.stoneCircle.image}"> ${players[0].works.stoneCircle.progress}/${players[0].works.stoneCircle.complete}`)
         $('#temple').html(`<img src="${players[0].works.temple.image}"> ${players[0].works.temple.progress}/${players[0].works.temple.complete}`)
@@ -385,12 +394,18 @@ const game = {
         $('#greatWall').html(`<img src="${players[0].works.greatWall.image}"> ${players[0].works.greatWall.progress}/${players[0].works.greatWall.complete}`)
         $('#greatPyramid').html(`<img src="${players[0].works.greatPyramid.image}"> ${players[0].works.greatPyramid.progress}/${players[0].works.greatPyramid.complete}`)
 
+        // score
+        $('score').prepend('<div/>').text('Score');
+        $('#monumentScore').text(`Monuments: ${players[0].score.monuments}`);
+        $('#disasterScore').text(`Disasters: ${players[0].score.disaster}`);
+        $('#totalScore').text(`Total: ${players[0].score.total}`);
     },
+
 };
  
 // call the start of game function
+// when adding additional player functionality, create a conditional that limits maximum number of players
 $('#start').on('click', () => {
-    // when adding additional player functionality, create a conditional that limits maximum number of players
     game.newPlayer();
     $('#start').off('click').text('');
 });

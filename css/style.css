@@ -14,16 +14,16 @@ img {
     margin: 0 2px;
 };
 
-.monuments {
+#monumentsContainer {
     display: flex;
     flex-wrap: wrap;
 };
 
-.monuments div {
+#monumentsContainer div {
     flex-wrap: wrap;
 }
 
-.monuments img {
+#monumentsContainer img {
     width: 50px;
     height: 50px;
 }
