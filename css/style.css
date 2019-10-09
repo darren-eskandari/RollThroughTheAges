@@ -4,6 +4,17 @@ body {
     padding: 20px;
 }
 
+.citiesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+.citiesContainer div {
+    margin: 0 5px;
+    text-align: center;
+}
+
 img {
     width: 40px; 
     margin: 0 4px;
@@ -14,16 +25,34 @@ img {
     margin: 0 2px;
 };
 
+.works {
+    margin: auto;
+}
+
+.works img {
+    opacity: 0.85;
+    cursor: pointer;
+}
+
+.works img:hover {
+    opacity: 1;
+}
+
+/* .works:focus 
+    background-blend-mode: darken;*/
+
 #monumentsContainer {
     display: flex;
     flex-wrap: wrap;
 };
 
-#monumentsContainer div {
+ div {
     flex-wrap: wrap;
 }
 
 #monumentsContainer img {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    margin-top: 20px;
 }

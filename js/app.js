@@ -338,7 +338,6 @@ const game = {
         // players[0].calculateGoods();
         players[0].calculateScore();
 
-
         this.render();
         this.buildWorks();
     },
@@ -346,10 +345,34 @@ const game = {
     // build works by assigning available workers
     buildWorks(){
         // assign workers from available pool to works and check for completion
-        $('.works').on('click', (e) => {
-            console.log(e.target);
-        });
+            // $('.works').on('click', (e) => {
+            //     console.log(e.target);
+            // });
+        // $('.work').hover( () {
+
+        // });
+
+        $('.works').on('click', e => {
+    
+            if(e.target.nodeName !== 'SELECT') {
+                $('.numOfWork').detach()
+                const $parent = $(`#${$(e.target).parent().attr('id')}`)
+                const work = players[0].works[$(e.target).parent().attr('id')] || 0
+                const dropDown = createDropDown(players[0].availableWorkers, work.complete)
+                $parent.append(dropDown)
+                $('select').on('change', (e) => console.log(e.target.value))
+            }
+        })
         
+        const createDropDown = (numOfWorkers, maxNum) => {
+            const $select = $("<select class='numOfWork'></select>")
+            const max = numOfWorkers < maxNum ? numOfWorkers : maxNum
+            for(let i = 0; i < max; i++) {
+                $select.append(`<option value=${i+1}>${i + 1}</option>`)
+            }
+            return $select
+        }
+
     },
     
     // // sell goods and use coins to build developments
@@ -380,10 +403,10 @@ const game = {
         $('#city1').html(`<img src="${players[0].works.city1.image}">`);
         $('#city2').html(`<img src="${players[0].works.city2.image}">`);
         $('#city3').html(`<img src="${players[0].works.city3.image}">`);
-        $('#city4').html(`<img src="${players[0].works.city4.image}"> ${players[0].works.city4.progress}/${players[0].works.city4.complete}`);
-        $('#city5').html(`<img src="${players[0].works.city5.image}"> ${players[0].works.city5.progress}/${players[0].works.city5.complete}`);
-        $('#city6').html(`<img src="${players[0].works.city6.image}"> ${players[0].works.city6.progress}/${players[0].works.city6.complete}`);
-        $('#city7').html(`<img src="${players[0].works.city7.image}"> ${players[0].works.city7.progress}/${players[0].works.city7.complete}`);
+        $('#city4').html(`<img src="${players[0].works.city4.image}"><br>${players[0].works.city4.progress}/${players[0].works.city4.complete}`);
+        $('#city5').html(`<img src="${players[0].works.city5.image}"><br>${players[0].works.city5.progress}/${players[0].works.city5.complete}`);
+        $('#city6').html(`<img src="${players[0].works.city6.image}"><br>${players[0].works.city6.progress}/${players[0].works.city6.complete}`);
+        $('#city7').html(`<img src="${players[0].works.city7.image}"><br>${players[0].works.city7.progress}/${players[0].works.city7.complete}`);
         
         // works - monuments
         $('#stepPyramid').html(`<img src="${players[0].works.stepPyramid.image}"> ${players[0].works.stepPyramid.progress}/${players[0].works.stepPyramid.complete}`)
