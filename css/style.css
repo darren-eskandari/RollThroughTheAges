@@ -4,27 +4,30 @@ body {
     padding: 20px;
 }
 
-.citiesContainer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-}
-
-.citiesContainer div {
-    margin: 0 5px;
-    text-align: center;
-}
-
-img {
-    width: 40px; 
-    margin: 0 4px;
-};
-
 .rolls img {
     width: 40px;
     margin: 0 2px;
 };
 
+.worksContainer {
+    display: flex;
+}
+
+.citiesContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+}
+
+.citiesContainer div {
+    margin: 0 10px;
+    text-align: center;
+}
+
+.citiesContainer img {
+    width: 40px; 
+};
+        
 .works {
     margin: auto;
 }
@@ -38,26 +41,22 @@ img {
     opacity: 1;
 }
 
-/* .works:focus 
-background-blend-mode: darken;*/
-
-#monumentsContainer {
+.monumentsContainer {
     display: flex;
     flex-wrap: wrap;
+    text-align: center;
+    align-content: center;
 };
 
 .monumentsContainer div {
-    margin: 0 5px;
-    text-align: center;
+    flex: wrap;
 }
 
-div {
-    flex-wrap: wrap;
-}
-
-#monumentsContainer img {
+.monumentsContainer img {
     width: 100px;
     height: 100px;
-    margin: 10px;
-    margin-top: 20px;
+    /* width: 30%; */
+    margin: 15px;
+    margin-top: 5px;
+    flex-wrap: wrap;
 }
