@@ -52,6 +52,7 @@ class Player {
             complete: 3,
             completed: false,
             score: 0,
+            cityBuilt: 1,
             image: 'images/city4.png',
         },
         city5: {
@@ -59,6 +60,7 @@ class Player {
             complete: 4,
             completed: false,
             score: 0,
+            cityBuilt: 1,
             image: 'images/city5.png',
         },
         city6: {
@@ -66,6 +68,7 @@ class Player {
             complete: 5,
             completed: false,
             score: 0,
+            cityBuilt: 1,
             image: 'images/city6.png',
         },
         city7: {
@@ -73,6 +76,7 @@ class Player {
             complete: 6,
             completed: false,
             score: 0,
+            cityBuilt: 1,
             image: 'images/city7.png',
         },
         stepPyramid: {
@@ -80,6 +84,7 @@ class Player {
             complete: 3,
             completed: false,
             score: 1,
+            cityBuilt: 0,
             image: 'images/step_pyramid.png',
         },
         stoneCircle: {
@@ -87,6 +92,7 @@ class Player {
             complete: 5,
             completed: false,
             score: 2,
+            cityBuilt: 0,
             image: 'images/stone_circle.png',
         },
         temple: {
@@ -94,6 +100,7 @@ class Player {
             complete: 7,
             completed: false,
             score: 4,
+            cityBuilt: 0,
             image: 'images/temple.png',
         },
         obelisk: {
@@ -101,6 +108,7 @@ class Player {
             complete: 9,
             completed: false,
             score: 6,
+            cityBuilt: 0,
             image: 'images/obelisk.png',
         },
         hangingGarden: {
@@ -108,6 +116,7 @@ class Player {
             complete: 11,
             completed: false,
             score: 8,
+            cityBuilt: 0,
             image: 'images/hanging_garden.png',
         },
         greatWall: {
@@ -115,6 +124,7 @@ class Player {
             complete: 13,
             completed: false,
             score: 10,
+            cityBuilt: 0,
             image: 'images/great_wall.png',
         },
         greatPyramid: {
@@ -122,6 +132,7 @@ class Player {
             complete: 15,
             completed: false,
             score: 12,
+            cityBuilt: 0,
             image: 'images/great_pyramid.png',
         }
     }
@@ -365,6 +376,7 @@ const game = {
                     if (players[0].works[`${e.target.parentNode.id}`].progress === players[0].works[`${e.target.parentNode.id}`].complete){
                         players[0].works[`${e.target.parentNode.id}`].completed = true;
                         players[0].score.monuments += players[0].works[`${e.target.parentNode.id}`].score;
+                        players[0].citiesBuilt += players[0].works[`${e.target.parentNode.id}`].cityBuilt;
                         players[0].calculateScore();
                     }
                     this.render();
