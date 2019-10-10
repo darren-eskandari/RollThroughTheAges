@@ -85,7 +85,7 @@ class Player {
             completed: false,
             score: 1,
             cityBuilt: 0,
-            image: 'images/step_pyramid.png',
+            image: 'images/stepPyramid.png',
         },
         stoneCircle: {
             progress: 0,
@@ -93,7 +93,7 @@ class Player {
             completed: false,
             score: 2,
             cityBuilt: 0,
-            image: 'images/stone_circle.png',
+            image: 'images/stoneCircle.png',
         },
         temple: {
             progress: 0,
@@ -117,7 +117,7 @@ class Player {
             completed: false,
             score: 8,
             cityBuilt: 0,
-            image: 'images/hanging_garden.png',
+            image: 'images/hangingGarden.png',
         },
         greatWall: {
             progress: 0,
@@ -125,7 +125,7 @@ class Player {
             completed: false,
             score: 10,
             cityBuilt: 0,
-            image: 'images/great_wall.png',
+            image: 'images/greatWall.png',
         },
         greatPyramid: {
             progress: 0,
@@ -133,7 +133,7 @@ class Player {
             completed: false,
             score: 12,
             cityBuilt: 0,
-            image: 'images/great_pyramid.png',
+            image: 'images/greatPyramid.png',
         }
     }
     
@@ -377,6 +377,8 @@ const game = {
                         players[0].works[`${e.target.parentNode.id}`].completed = true;
                         players[0].score.monuments += players[0].works[`${e.target.parentNode.id}`].score;
                         players[0].citiesBuilt += players[0].works[`${e.target.parentNode.id}`].cityBuilt;
+                        players[0].works[`${e.target.parentNode.id}`].image = 'completed/' + players[0].works[`${e.target.parentNode.id}`].image
+                        console.log(players[0].works[`${e.target.parentNode.id}`].image)
                         players[0].calculateScore();
                     }
                     this.render();
