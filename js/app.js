@@ -11,18 +11,18 @@ class Player {
             monuments: 0,
             disaster: 0,
             total: 0
-            // developments: 0,
-            // bonus: 0, 
+                // developments: 0,
+                // bonus: 0, 
         };
-        // this.developmentsCompleted = [];
-        // this.totalGoods = 0;
-        // this.goods = {
-        //     wood: [1, 3, 6, 10, 15, 21, 28, 36],
-        //     stone: [2, 6, 12, 20, 30, 42, 56,],
-        //     pottery: [3, 9, 18, 30, 45, 63],
-        //     textiles: [4, 12, 24, 40, 60],
-        //     weapons: [5, 15, 30, 50]
-        // };
+            // this.developmentsCompleted = [];
+            // this.totalGoods = 0;
+            // this.goods = {
+            //     wood: [1, 3, 6, 10, 15, 21, 28, 36],
+            //     stone: [2, 6, 12, 20, 30, 42, 56,],
+            //     pottery: [3, 9, 18, 30, 45, 63],
+            //     textiles: [4, 12, 24, 40, 60],
+            //     weapons: [5, 15, 30, 50]
+            // };
     }
 
     works =  {
@@ -159,16 +159,16 @@ class Player {
     calculateScore(){
         this.score.total = this.score.monuments + this.score.disaster
     }
-    // calculateGoods(){
-    //  console.log(`player collects goods`)
-    // }
-    // developmentModifiers(){
-    //    
-    // }
+        // calculateGoods(){
+        //  console.log(`player collects goods`)
+        // }
+        // developmentModifiers(){
+        //    
+        // }
 };
     
 const players = [];
-// player 1 to be replaced with current player variable later
+// player[0] to be replaced with currentPlayer variable later
 
 // game object
 const game = {
@@ -238,8 +238,8 @@ const game = {
         // skip rerolls and assign results
         $('.rolls').append('<div id="keepRoll">keep results</div>');
         $('#keepRoll').on('click', () => {
-            $('#keepRoll').off('click').text('');
-            $('#rerollDice').off('click').text('');
+            $('#keepRoll').remove();
+            $('#rerollDice').remove();
             for (let i = 0; i < this.firstResult.length; i++){
                 this.finalResult.push(this.firstResult[i]);
                 $('#firstResults').text('');
@@ -254,8 +254,8 @@ const game = {
          // call the first reroll method
          $('.rolls').append('<div id="rerollDice">reroll results</div>');
          $('#rerollDice').on('click', () => {
-            $('#keepRoll').off('click').text('');
-            $('#rerollDice').off('click').text('');
+            $('#keepRoll').remove();
+            $('#rerollDice').remove();
             $('#firstResults').text('');
             this.firstReroll();
          });
@@ -283,8 +283,8 @@ const game = {
         // skip second reroll and assign results
         $('.rolls').append('<div id="keepReroll">keep results</div>');
         $('#keepReroll').on('click', () => {
-            $('#keepReroll').off('click').text('');
-            $('#rerollAgain').off('click').text('');
+            $('#keepReroll').remove();
+            $('#rerollAgain').remove();
             for (let i = 0; i < this.rerollResult.length; i++){
                 this.finalResult.push(this.rerollResult[i]);
                 $('#rerollResults').text('');
@@ -299,13 +299,14 @@ const game = {
         // call second reroll 
         $('.rolls').append('<div id="rerollAgain">reroll results</div>');
         $('#rerollAgain').on('click', () => {
-            $('#keepReroll').off('click').text('');
-            $('#rerollAgain').off('click').text('');
+            $('#keepReroll').remove();
+            $('#rerollAgain').remove();
             $('#firstResults').text('');
             this.secondReroll();
         });        
     },
 
+    // generate final reroll 
     secondReroll(){
         for (let i = 0; i < this.rerollResult.length; i++){
             const randomResult = Math.floor(Math.random() * this.diceResults.length);
@@ -328,7 +329,7 @@ const game = {
         // coins: 0,
     },
 
-    //collect food function
+    // assign roll results
     assignResults(){
         for (let i = 0; i < this.finalResult.length; i++){
             if (this.finalResult[i].result === 'disaster'){
@@ -355,10 +356,12 @@ const game = {
 
     // build works by assigning available workers
     buildWorks(){
-        // assign workers from available pool to works and check for completion
-            // $('.works').on('click', (e) => {
-            //     console.log(e.target);
-            // });
+        $('.rolls').append('<div id="endTurn">End Turn</div>');
+        $('#endTurn').on('click', () => {
+            $('#endTurn').remove();
+            this.endTurn();
+        });
+
         $('.works').on('click', e => {
             if(e.target.nodeName !== 'SELECT') {
                 $('.numOfWork').detach();
@@ -378,11 +381,11 @@ const game = {
                         players[0].score.monuments += players[0].works[`${e.target.parentNode.id}`].score;
                         players[0].citiesBuilt += players[0].works[`${e.target.parentNode.id}`].cityBuilt;
                         players[0].works[`${e.target.parentNode.id}`].image = 'completed/' + players[0].works[`${e.target.parentNode.id}`].image
-                        console.log(players[0].works[`${e.target.parentNode.id}`].image)
                         players[0].calculateScore();
                     }
                     this.render();
                     if (players[0].availableWorkers === 0) {
+                        $('#endTurn').remove();
                         this.endTurn();
                     }
                 });
@@ -399,22 +402,32 @@ const game = {
         };
     },
 
-    // // sell goods and use coins to build developments
-    // purchaseDevelopments(){
-    //     // allow player to sell goods, add coins, and purchase a single development
-    //     // call the discard goods function when purchase confirmed ** optional
-    // },
+        // // sell goods and use coins to build developments
+        // purchaseDevelopments(){
+        //     // allow player to sell goods, add coins, and purchase a single development
+        //     // call the discard goods function when purchase confirmed ** optional
+        // },
 
-    // // discard goods in excess of 6 ** optional
-    // discardGoods(){
-    //     // prompt the player to discard 
-    //     // confirmation calls the end of turn
-    // },
+        // // discard goods in excess of 6 ** optional
+        // discardGoods(){
+        //     // prompt the player to discard 
+        //     // confirmation calls the end of turn
+        // },
 
     // all functions that occur at end of turn
     endTurn(){
         // calls score calculation functions and checks for end of game triggers.
-        console.log(players[0].works);
+        this.firstResult = [];
+        this.rerollResult = [];
+        this.finalResult = [];
+        $('#finalResult').text('');
+
+        this.val.disasters = 0;
+        this.val.food = 0;
+        this.val.workers = 0;
+        
+        this.render();
+        $('#rollDice').text(`Roll Dice`)
     },
 
     // render game state
@@ -460,5 +473,5 @@ $('#start').on('click', () => {
 
 $('#rollDice').on('click', () => {
     game.rollDice();
-    $('#rollDice').off('click').text('');
+    $('#rollDice').text('');
 });
