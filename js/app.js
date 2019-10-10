@@ -442,7 +442,8 @@ const game = {
         this.val.disasters = 0;
         this.val.food = 0;
         this.val.workers = 0;
-        
+        this.currentRound++
+
         this.render();
         const nextRound = alert('Ready for the next round?')
         $('#rollDice').text(`Roll Dice`)
@@ -452,6 +453,7 @@ const game = {
     render(){
         // player info
         $('#name').text(`Player: ${players[0].name}`);
+        $('#round').text(`Round: ${game.currentRound}`);
         $('#food').text(`Food: ${players[0].food}`);
         $('#workers').text(`Available Workers: ${players[0].availableWorkers}`);
         
