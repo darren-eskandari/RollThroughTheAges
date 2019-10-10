@@ -180,7 +180,9 @@ const game = {
         this.render();
     },
 
-    gamePhases: ['rollDicePhase', 'assignResultsPhase', 'buildWorkPhase', 'cleanUpPhase'],
+    currentRound: 1,
+    phases: ['rollDicePhase', 'assignResultsPhase', 'buildWorkPhase', 'cleanUpPhase'],    
+    currentPhase: null,
 
     diceResults: 
     [
@@ -222,6 +224,8 @@ const game = {
 
     // initial dice roll
     rollDice(){
+        this.currentPhase = this.phases[0];
+        console.log(this.currentPhase);
         for (let i = 0; i < players[0].citiesBuilt; i++){
             const randomResult = Math.floor(Math.random() * this.diceResults.length);
             if (randomResult === 0){
@@ -333,6 +337,8 @@ const game = {
 
     // assign roll results
     assignResults(){
+        this.currentPhase = this.phases[1]
+        console.log(this.currentPhase);
         for (let i = 0; i < this.finalResult.length; i++){
             if (this.finalResult[i].result === 'disaster'){
                 this.val.disasters = this.val.disasters + this.finalResult[i].amount;
@@ -358,6 +364,8 @@ const game = {
 
     // build works by assigning available workers
     buildWorks(){
+        this.currentPhase = this.phases[2]
+        console.log(this.currentPhase);
         $('.rolls').append('<div id="endTurn">End Turn</div>');
         $('#endTurn').on('click', () => {
             $('#endTurn').remove();
@@ -422,6 +430,8 @@ const game = {
     // all functions that occur at end of turn
     endTurn(){
         // calls score calculation functions and checks for end of game triggers.
+        this.currentPhase = this.phases[3]
+        console.log(this.currentPhase);
         this.firstResult = [];
         this.rerollResult = [];
         this.finalResult = [];
@@ -432,6 +442,7 @@ const game = {
         this.val.workers = 0;
         
         this.render();
+        const nextRound = alert('Ready for the next round?')
         $('#rollDice').text(`Roll Dice`)
     },
 
@@ -480,3 +491,5 @@ $('#rollDice').on('click', () => {
     game.rollDice();
     $('#rollDice').text('');
 });
+
+
