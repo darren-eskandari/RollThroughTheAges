@@ -180,6 +180,8 @@ const game = {
         this.render();
     },
 
+    gamePhases: ['rollDicePhase', 'assignResultsPhase', 'buildWorkPhase', 'cleanUpPhase'],
+
     diceResults: 
     [
         {
