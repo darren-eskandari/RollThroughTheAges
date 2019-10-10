@@ -406,12 +406,14 @@ const game = {
         });
         
         const createDropDown = (numOfWorkers, maxNum) => {
-            const $select = $("<select class='numOfWork'></select>");
-            const max = numOfWorkers < maxNum ? numOfWorkers : maxNum;
-            for(let i = 0; i <= max; i++) {
-                $select.append(`<option value=${i}>${i}</option>`);
+            if (this.currentPhase === 'buildWorkPhase') {  
+                const $select = $("<select class='numOfWork'></select>");
+                const max = numOfWorkers < maxNum ? numOfWorkers : maxNum;
+                for(let i = 0; i <= max; i++) {
+                    $select.append(`<option value=${i}>${i}</option>`);
+                }
+                return $select;
             }
-            return $select;
         };
     },
 
