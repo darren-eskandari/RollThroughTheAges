@@ -367,7 +367,7 @@ const game = {
                 $('.numOfWork').detach();
                 const $parent = $(`#${$(e.target).parent().attr('id')}`);
                 const work = players[0].works[$(e.target).parent().attr('id')] || 0;
-                const dropDown = createDropDown(players[0].availableWorkers, work.complete);
+                const dropDown = createDropDown(players[0].availableWorkers, work.complete - work.progress);
                 $parent.append(dropDown)
                 // $('select').on('change', (e) => console.log(e.target.value));
                 // $('select').on('change', (e) => console.log(e.target.parentNode.id));
