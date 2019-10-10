@@ -4,6 +4,15 @@ body {
     padding: 20px;
 }
 
+#start {
+    align-items: center;
+    text-align: center;
+}
+
+#start img {
+    width: 500px;
+}
+
 .rolls img {
     width: 40px;
     margin: 0 2px;
@@ -60,3 +69,4 @@ body {
     margin-top: 5px;
     flex-wrap: wrap;
 }
+
