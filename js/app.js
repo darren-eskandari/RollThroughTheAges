@@ -176,8 +176,8 @@ const game = {
         setName = prompt('Name your civilization');
         const player1 = new Player(setName);
         players.push(player1)
-        $('#rollDice').text(`Roll Dice`)
         this.render();
+        this.startRound();
     },
 
     currentRound: 1,
@@ -221,6 +221,10 @@ const game = {
     firstResult: [],
     rerollResult: [],
     finalResult: [],
+
+    startRound(){
+        $('#rollDice').text(`Roll Dice`)
+    },
 
     // initial dice roll
     rollDice(){
@@ -397,10 +401,10 @@ const game = {
                         players[0].calculateScore();
                     }
                     this.render();
-                    if (players[0].availableWorkers === 0) {
-                        $('#endTurn').remove();
-                        this.endTurn();
-                    }
+                    // if (players[0].availableWorkers === 0) {
+                    //     $('#endTurn').remove();
+                    //     this.endTurn();
+                    // }
                 });
             }
         });
@@ -446,7 +450,7 @@ const game = {
 
         this.render();
         const nextRound = alert('Ready for the next round?')
-        $('#rollDice').text(`Roll Dice`)
+        this.startRound();
     },
 
     // render game state

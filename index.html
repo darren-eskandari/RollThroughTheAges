@@ -9,72 +9,81 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
 </head>
 <body>
-    <div id="start">
-        Click to Start
-        <img src="images/cover.jpg">
-    </div>
+    <div class="container">
+        <div id="start">
+            Click to Start
+            <img src="images/cover.jpg">
+        </div>
 
-    <div id="playerInfo">
-        <div id="name"></div>
-        <div id="round"></div>
-        <div id="assets">
-            <div id="food"></div>
-            <div id="workers"></div>
-            <!-- <div id="goods">
-                <div id="wood"></div>
-                <div id="stone"></div>
-                <div id="pottery"></div>
-                <div id="textiles"></div>
-                <div id="weapons"></div>
-            </div> -->
-            <div class="score">
-                <div id="developScore"></div>
-                <div id="monumentScore"></div>
-                <div id="bonusScore"></div>
-                <div id="disasterScore"></div>
-                <div id="totalScore"></div>
+        <div id="playerInfo">
+            <div id="name"></div>
+            <div id="round"></div>
+            <div id="assets">
+                <div id="food"></div>
+                <div id="workers"></div>
+                <!-- <div id="goods">
+                    <div id="wood"></div>
+                    <div id="stone"></div>
+                    <div id="pottery"></div>
+                    <div id="textiles"></div>
+                    <div id="weapons"></div>
+                </div> -->
+                <div class="score">
+                    <div id="developScore"></div>
+                    <div id="monumentScore"></div>
+                    <div id="bonusScore"></div>
+                    <div id="disasterScore"></div>
+                    <div id="totalScore"></div>
+                </div>
             </div>
         </div>
-    </div>
-    <div id="rollDice"></div>
-    <div class="rolls">
-        <div id="finalResult"></div>
-        <div id="rerollResults"></div>
-        <div id="firstResults"></div>
-    </div>
-
-    
-    <div class="worksContainer">
-        <div class="citiesContainer">
-            <div id="city1" class="works"></div>
-            <div id="city2" class="works"></div>
-            <div id="city3" class="works"></div>
-            <div id="city4" class="works incomplete"></div>
-            <div id="city5" class="works incomplete"></div>
-            <div id="city6" class="works incomplete"></div>
-            <div id="city7" class="works incomplete"></div>
+        <div id="rollDice"></div>
+        <div class="rolls">
+            <div id="finalResult"></div>
+            <div id="rerollResults"></div>
+            <div id="firstResults"></div>
         </div>
-        <div class="monumentsContainer">
-            <div id="stepPyramid" class="works incomplete monument"></div>
-            <div id="stoneCircle" class="works incomplete monument"></div>
-            <div id="temple" class="works incomplete monument"></div>
-            <div id="obelisk" class="works incomplete monument"></div>
-            <div id="hangingGarden" class="works incomplete monument"></div>
-            <div id="greatWall" class="works incomplete monument"></div>
-            <div id="greatPyramid" class="works incomplete monument"></div>
+
+        
+        <div class="worksContainer">
+            <div class="citiesContainer">
+                <div id="city1" class="works"></div>
+                <div id="city2" class="works"></div>
+                <div id="city3" class="works"></div>
+                <div id="city4" class="works incomplete"></div>
+                <div id="city5" class="works incomplete"></div>
+                <div id="city6" class="works incomplete"></div>
+                <div id="city7" class="works incomplete"></div>
+            </div>
+            <div class="monumentsContainer">
+                <div id="monumentsLeft">
+                    <div id="monumentsLeftTop">
+                        <div id="stepPyramid" class="works incomplete monument"></div>
+                        <div id="stoneCircle" class="works incomplete monument"></div>
+                        <div id="temple" class="works incomplete monument"></div>
+                    </div>
+                    <div id="monumentsLeftMiddle">
+                        <div id="hangingGarden" class="works incomplete monument"></div>
+                        <div id="greatPyramid" class="works incomplete monument"></div>
+                    </div>
+                    <div id="monumentsLeftBottom">
+                        <div id="greatWall" class="works incomplete monument"></div>
+                    </div>
+                </div>
+                <div id="monumentsRight">
+                    <div id="obelisk" class="works incomplete monument"></div>
+                </div>
+            </div>
         </div>
+        
+        <!-- <div id="developments">
+            <div id="irrigation"></div>
+            <div id="agriculture"></div>
+            <div id="masonry"></div>
+            <div id="architecture"></div>
+            <div id="empire"></div>
+        </div> -->
     </div>
-    
-    <!-- <div id="developments">
-        <div id="irrigation"></div>
-        <div id="agriculture"></div>
-        <div id="masonry"></div>
-        <div id="architecture"></div>
-        <div id="empire"></div>
-    </div> -->
-    
-
-
     <script src="js/app.js"></script>
 </body>
 </html>

@@ -1,16 +1,23 @@
-body {
-    width: 500px;
-    margin: auto;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
     padding: 20px;
 }
 
 #start {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     text-align: center;
 }
 
 #start img {
-    width: 500px;
+    width: 600px;
 }
 
 .rolls img {
@@ -24,11 +31,14 @@ body {
 
 .citiesContainer {
     display: flex;
-    flex-wrap: nowrap;
     align-items: baseline;
+    height: 135px;
+    border-top: 1px solid black;
+    margin-top: 5px;
 }
 
 .citiesContainer div {
+    width: 40px;
     margin: 0 10px;
     text-align: center;
 }
@@ -38,7 +48,7 @@ body {
 };
         
 .works {
-    margin: auto;
+    margin: 0;
 }
 
 .works, .incomplete img {
@@ -51,22 +61,25 @@ body {
 }
 
 .monumentsContainer {
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
     text-align: center;
     align-content: center;
 };
 
-.monumentsContainer div {
-    flex: wrap;
+.monumentsLeft {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
 }
 
-.monumentsContainer img {
-    width: 100px;
-    height: 100px;
-    /* width: 30%; */
-    margin: 15px;
-    margin-top: 5px;
-    flex-wrap: wrap;
+
+
+.monumentsLeftTop {
+    flex-direction: row;
 }
 
+#obelisk img {
+    height: 100%;
+    width: 100%;
+}
