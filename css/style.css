@@ -32,12 +32,12 @@ body {
     margin: auto;
 }
 
-.works img {
+.works, .incomplete img {
     opacity: 0.85;
     cursor: pointer;
 }
 
-.works img:hover {
+.works, .incomplete img:hover {
     opacity: 1;
 }
 

@@ -362,13 +362,15 @@ const game = {
             this.endTurn();
         });
 
-        $('.works').on('click', e => {
+        $('.incomplete').on('click', e => {
             if(e.target.nodeName !== 'SELECT') {
                 $('.numOfWork').detach();
                 const $parent = $(`#${$(e.target).parent().attr('id')}`);
                 const work = players[0].works[$(e.target).parent().attr('id')] || 0;
-                const dropDown = createDropDown(players[0].availableWorkers, work.complete - work.progress);
-                $parent.append(dropDown)
+                if(!work.completed) {
+                    const dropDown = createDropDown(players[0].availableWorkers, work.complete - work.progress);
+                    $parent.append(dropDown)
+                }
                 // $('select').on('change', (e) => console.log(e.target.value));
                 // $('select').on('change', (e) => console.log(e.target.parentNode.id));
                 $('select').change((e) => { 
@@ -380,7 +382,8 @@ const game = {
                         players[0].works[`${e.target.parentNode.id}`].completed = true;
                         players[0].score.monuments += players[0].works[`${e.target.parentNode.id}`].score;
                         players[0].citiesBuilt += players[0].works[`${e.target.parentNode.id}`].cityBuilt;
-                        players[0].works[`${e.target.parentNode.id}`].image = 'completed/' + players[0].works[`${e.target.parentNode.id}`].image
+                        players[0].works[`${e.target.parentNode.id}`].image = 'completed/' + players[0].works[`${e.target.parentNode.id}`].image;
+                        $(e.target).parent().removeClass('incomplete');
                         players[0].calculateScore();
                     }
                     this.render();
