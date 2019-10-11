@@ -246,7 +246,7 @@ const game = {
         });
 
         // skip rerolls and assign results
-        $('.rolls').append('<div id="keepRoll">keep results</div>');
+        $('.rolls').append('<div id="keepRoll" class="button">keep results</div>');
         $('#keepRoll').on('click', () => {
             $('#keepRoll').remove();
             $('#rerollDice').remove();
@@ -262,7 +262,7 @@ const game = {
         });
 
          // call the first reroll method
-         $('.rolls').append('<div id="rerollDice">reroll results</div>');
+         $('.rolls').append('<div id="rerollDice" class="button">reroll results</div>');
          $('#rerollDice').on('click', () => {
             $('#keepRoll').remove();
             $('#rerollDice').remove();
@@ -291,7 +291,7 @@ const game = {
         });
 
         // skip second reroll and assign results
-        $('.rolls').append('<div id="keepReroll">keep results</div>');
+        $('.rolls').append('<div id="keepReroll" class="button">keep results</div>');
         $('#keepReroll').on('click', () => {
             $('#keepReroll').remove();
             $('#rerollAgain').remove();
@@ -307,7 +307,7 @@ const game = {
         });
 
         // call second reroll 
-        $('.rolls').append('<div id="rerollAgain">reroll results</div>');
+        $('.rolls').append('<div id="rerollAgain" class="button">reroll results</div>');
         $('#rerollAgain').on('click', () => {
             $('#keepReroll').remove();
             $('#rerollAgain').remove();
@@ -370,7 +370,7 @@ const game = {
     buildWorks(){
         this.currentPhase = this.phases[2]
         console.log(this.currentPhase);
-        $('.rolls').append('<div id="endTurn">End Turn</div>');
+        $('.rolls').append('<div id="endTurn" class="button">End Turn</div>');
         $('#endTurn').on('click', () => {
             $('#endTurn').remove();
             this.endTurn();
@@ -471,13 +471,13 @@ const game = {
         $('#city7').html(`<img src="${players[0].works.city7.image}"><br>${players[0].works.city7.progress}/${players[0].works.city7.complete}`);
         
         // works - monuments
-        $('#stepPyramid').html(`<img src="${players[0].works.stepPyramid.image}"><br>Step Pyramid<br>${players[0].works.stepPyramid.progress}/${players[0].works.stepPyramid.complete}`);
-        $('#stoneCircle').html(`<img src="${players[0].works.stoneCircle.image}"><br>Stone Circle ${players[0].works.stoneCircle.progress}/${players[0].works.stoneCircle.complete}<br>`);
-        $('#temple').html(`<img src="${players[0].works.temple.image}"><br>Temple ${players[0].works.temple.progress}/${players[0].works.temple.complete}<br>`);
-        $('#obelisk').html(`<img src="${players[0].works.obelisk.image}"><br>Obelisk ${players[0].works.obelisk.progress}/${players[0].works.obelisk.complete}<br>`);
-        $('#hangingGarden').html(`<img src="${players[0].works.hangingGarden.image}"><br>Hanging Garden ${players[0].works.hangingGarden.progress}/${players[0].works.hangingGarden.complete}<br>`);
-        $('#greatWall').html(`<img src="${players[0].works.greatWall.image}"><br>Great Wall ${players[0].works.greatWall.progress}/${players[0].works.greatWall.complete}<br>`)
-        $('#greatPyramid').html(`<img src="${players[0].works.greatPyramid.image}"><br>Great Pyramid ${players[0].works.greatPyramid.progress}/${players[0].works.greatPyramid.complete}<br>`)
+        $('#stepPyramid').html(`<img src="${players[0].works.stepPyramid.image}"><br>Step Pyramid<br>${players[0].works.stepPyramid.progress}/${players[0].works.stepPyramid.complete}<br>`);
+        $('#stoneCircle').html(`<img src="${players[0].works.stoneCircle.image}"><br>Stone Circle<br>${players[0].works.stoneCircle.progress}/${players[0].works.stoneCircle.complete}<br>`);
+        $('#temple').html(`<img src="${players[0].works.temple.image}"><br>Temple<br>${players[0].works.temple.progress}/${players[0].works.temple.complete}<br>`);
+        $('#obelisk').html(`<img src="${players[0].works.obelisk.image}"><br>Obelisk<br>${players[0].works.obelisk.progress}/${players[0].works.obelisk.complete}<br>`);
+        $('#hangingGarden').html(`<img src="${players[0].works.hangingGarden.image}"><br>Hanging Garden<br>${players[0].works.hangingGarden.progress}/${players[0].works.hangingGarden.complete}<br>`);
+        $('#greatWall').html(`<img src="${players[0].works.greatWall.image}"><br>Great Wall  ${players[0].works.greatWall.progress}/${players[0].works.greatWall.complete}<br>`)
+        $('#greatPyramid').html(`<img src="${players[0].works.greatPyramid.image}"><br>Great Pyramid  ${players[0].works.greatPyramid.progress}/${players[0].works.greatPyramid.complete}<br>`)
 
         // score
         $('score').prepend('<div/>').text('Score');

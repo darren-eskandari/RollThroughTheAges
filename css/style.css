@@ -14,9 +14,11 @@
     align-items: center;
     flex-direction: column;
     text-align:center;
+    font-family: 'Roboto', sans-serif;
 }
 
 #start {
+    font-family: 'Cinzel', serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,6 +35,9 @@
     text-align: left;
     align-items: flex-start;
     justify-content: space-evenly;
+    font-family: 'Cinzel', serif;
+    font-size: .95rem;
+    font-weight: 700;
 }
 
 #activePlayer {
@@ -46,6 +51,18 @@
 .score {
     text-align: right;
     width: 140px;
+}
+
+.rolls {
+    font-size: 1.1rem;
+    font-weight: 700;
+
+}
+
+.button:hover {
+    cursor: pointer;
+    font-size: 120%;
+    font-weight: 900;
 }
 
 .rolls img {
@@ -79,6 +96,7 @@
         
 .works {
     margin: 0;
+    font-size: 0.9rem;
 }
 
 .works, .incomplete img {
