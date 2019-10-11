@@ -185,6 +185,7 @@ const game = {
     currentPhase: null,
     audio: $('#diceSound')[0],
     audio2: $('#diceKeep')[0],
+    audio3: $('#nextTurn')[0],
 
     diceResults: 
     [
@@ -458,6 +459,7 @@ const game = {
 
         this.render();
         const nextRound = alert('Ready for the next round?')
+        this.audio3.play();
         this.startRound();
     },
 
