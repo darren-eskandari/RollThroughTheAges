@@ -87,38 +87,21 @@
     flex: 1;
 }
 
-
-
 #monumentsLeftTop {
     display: flex;
     justify-content: left;
     align-items: flex-start;
     height: 120px;
+    justify-content: space-around;
 }
-
 
 #monumentsLeftMiddle {
     display: flex;
     justify-content: left;
     align-items: center;
     height: 200px;
+    justify-content: space-around;
 }
-
-/* #monumentsLeftTop div img, #monumentsLeftMiddle div img, #monumentsLeftBottom div img{
-    height: auto;
-    width: 100px;
-} */
-
-/* #monumentsLeftMiddle div img{
-    height: 40px;
-    width: auto;
-}
-
-#monumentsLeftBottom div img{
-    height: 40px;
-    width: auto;
-} */
-
 
 #stepPyramid img {
     width: 70px;
