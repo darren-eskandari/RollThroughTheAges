@@ -4,7 +4,7 @@ class Player {
         this.name = name;
         this.isStartPlayer = true;
         this.citiesBuilt = 3;
-        this.monumentsBuilt = 0;
+        this.monumentsBuilt = 6;
         this.food = 3;
         this.availableWorkers = 0;
         this.score = {
