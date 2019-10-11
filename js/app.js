@@ -395,6 +395,11 @@ const game = {
     // build works by assigning available workers
     buildWorks(){
         $('aside').text('Build Cities or Monuments by clicking on them and assigning available workers.');
+        $('aside').append('<br> <br><div id="quit" class="button">Quit Game</div>');
+        $('#quit').on('click', () => {
+            game.endGame();
+            $('#rollDice').text('');
+        });
         this.currentPhase = this.phases[2]
         console.log(this.currentPhase);
         $('.rolls').append('<div id="endTurn" class="button">End Turn</div>');
