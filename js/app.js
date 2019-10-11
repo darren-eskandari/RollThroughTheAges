@@ -471,13 +471,13 @@ const game = {
         $('#city7').html(`<img src="${players[0].works.city7.image}"><br>${players[0].works.city7.progress}/${players[0].works.city7.complete}`);
         
         // works - monuments
-        $('#stepPyramid').html(`<img src="${players[0].works.stepPyramid.image}"><br> ${players[0].works.stepPyramid.progress}/${players[0].works.stepPyramid.complete}`)
-        $('#stoneCircle').html(`<img src="${players[0].works.stoneCircle.image}"><br> ${players[0].works.stoneCircle.progress}/${players[0].works.stoneCircle.complete}`)
-        $('#temple').html(`<img src="${players[0].works.temple.image}"><br> ${players[0].works.temple.progress}/${players[0].works.temple.complete}`)
-        $('#obelisk').html(`<img src="${players[0].works.obelisk.image}"><br> ${players[0].works.obelisk.progress}/${players[0].works.obelisk.complete}`)
-        $('#hangingGarden').html(`<img src="${players[0].works.hangingGarden.image}"><br> ${players[0].works.hangingGarden.progress}/${players[0].works.hangingGarden.complete}`)
-        $('#greatWall').html(`<img src="${players[0].works.greatWall.image}"><br> ${players[0].works.greatWall.progress}/${players[0].works.greatWall.complete}`)
-        $('#greatPyramid').html(`<img src="${players[0].works.greatPyramid.image}"><br> ${players[0].works.greatPyramid.progress}/${players[0].works.greatPyramid.complete}`)
+        $('#stepPyramid').html(`<img src="${players[0].works.stepPyramid.image}"><br>Step Pyramid<br>${players[0].works.stepPyramid.progress}/${players[0].works.stepPyramid.complete}`);
+        $('#stoneCircle').html(`<img src="${players[0].works.stoneCircle.image}"><br>Stone Circle ${players[0].works.stoneCircle.progress}/${players[0].works.stoneCircle.complete}<br>`);
+        $('#temple').html(`<img src="${players[0].works.temple.image}"><br>Temple ${players[0].works.temple.progress}/${players[0].works.temple.complete}<br>`);
+        $('#obelisk').html(`<img src="${players[0].works.obelisk.image}"><br>Obelisk ${players[0].works.obelisk.progress}/${players[0].works.obelisk.complete}<br>`);
+        $('#hangingGarden').html(`<img src="${players[0].works.hangingGarden.image}"><br>Hanging Garden ${players[0].works.hangingGarden.progress}/${players[0].works.hangingGarden.complete}<br>`);
+        $('#greatWall').html(`<img src="${players[0].works.greatWall.image}"><br>Great Wall ${players[0].works.greatWall.progress}/${players[0].works.greatWall.complete}<br>`)
+        $('#greatPyramid').html(`<img src="${players[0].works.greatPyramid.image}"><br>Great Pyramid ${players[0].works.greatPyramid.progress}/${players[0].works.greatPyramid.complete}<br>`)
 
         // score
         $('score').prepend('<div/>').text('Score');
