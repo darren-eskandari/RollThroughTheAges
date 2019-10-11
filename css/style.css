@@ -7,6 +7,7 @@
 body {
     background-image: url("../images/papyrus.jpg");
     background-size: cover;
+    backdrop-filter: brightness(105%);
 }
 
 
@@ -62,6 +63,17 @@ body {
 .score {
     text-align: right;
     width: 140px;
+}
+
+#endGame {
+    display: flex;
+    text-align: center;
+    justify-content: space-evenly;
+    font-family: 'Cinzel', serif;
+    width: 70%;
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 20px 0;
 }
 
 .rolls {

@@ -4,13 +4,13 @@ class Player {
         this.name = name;
         this.isStartPlayer = true;
         this.citiesBuilt = 3;
-        this.monumentsBuilt = 0;
+        this.monumentsBuilt = 6;
         this.food = 3;
         this.availableWorkers = 0;
         this.score = {
             monuments: 0,
             disaster: 0,
-            total: 0
+            total: 0,
                 // developments: 0,
                 // bonus: 0, 
         };
@@ -191,7 +191,7 @@ const game = {
         this.startRound();
     },
 
-    currentRound: 1,
+    currentRound: 0,
     phases: ['rollDicePhase', 'assignResultsPhase', 'buildWorkPhase', 'cleanUpPhase'],    
     currentPhase: null,
     audio: $('#diceSound')[0],
@@ -237,6 +237,7 @@ const game = {
     finalResult: [],
 
     startRound(){
+        this.currentRound++;
         $('#rollDice').text('Roll Dice')
     },
 
@@ -458,9 +459,7 @@ const game = {
 
     // all functions that occur at end of turn
     endTurn(){
-        // calls score calculation functions and checks for end of game triggers.
         this.currentPhase = this.phases[3]
-        console.log(this.currentPhase);
         this.firstResult = [];
         this.rerollResult = [];
         this.finalResult = [];
@@ -469,17 +468,36 @@ const game = {
         this.val.disasters = 0;
         this.val.food = 0;
         this.val.workers = 0;
-        this.currentRound++
 
         this.render();
-        const nextRound = alert('Ready for the next round?');
 
-        if (players[0].monumentsBuilt == '7'){
-            console.log('game over')
+        if (players[0].monumentsBuilt == 7){
+            this.endGame();
+        } else {
+            this.audio3.play();
+            this.startRound();
+            const nextRound = alert('Ready for the next round?');
         }
+    },
 
-        this.audio3.play();
-        this.startRound();
+    endGame(){
+        $('.rolls').append('<div id="playAgain" class="button">Play again</div>');
+        $('#playAgain').on('click', () => {
+            location.reload();
+        });
+        if (players[0].score.total < 0){
+            $('#endGame').append(`Your cities have crumble to dust, and your people have been forgotten. All that remains of your civilization is your name, ${players[0].name} the Wretched - the worst ruler of all time.`);
+        } else if (players[0].score.total < 10) {
+            $('#endGame').append(`${players[0].name} the OK, I guess. Your deed will... actually, what were your deeds again?`);
+        } else if (players[0].score.total < 20) {
+            $('#endGame').append(`${players[0].name} the Acceptable. Someday, you will be remembered in the form of a single bullet point in a Jr High School history book.`);
+        } else if (players[0].score.total < 30) {
+            $('#endGame').append(`You will ever be known as ${players[0].name} the Just. History seems to have mostly forgotten how many of your people starved under your rule.`);
+        } else if (players[0].score.total < 40) {
+            $('#endGame').append(`Statues of ${players[0].name} the Wise are considered national treasures. Your traditions and laws laid the foundations of many civilizations to follow.`);
+        } else {
+            $('#endGame').append(`The greatest empire in all of history was built on the deeds of ${players[0].name} the Great!`);
+        }
     },
 
     // render game state
@@ -521,7 +539,7 @@ const game = {
 // when adding additional player functionality, create a conditional that limits maximum number of players
 $('#start').on('click', () => {
     game.newPlayer();
-    $('#start').off('click').text('');
+    $('#start').text('');
 });
 
 $('#rollDice').on('click', () => {
