@@ -237,6 +237,7 @@ const game = {
     finalResult: [],
 
     startRound(){
+        $('.citiesContainer').css('border-top', '1px solid black');
         this.currentRound++;
         $('aside').text("Click 'Roll Dice' to assemble your labor force and to harvest food for your cities.");
         $('#rollDice').text('Roll Dice');

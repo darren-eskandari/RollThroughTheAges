@@ -29,11 +29,10 @@ main {
 }
 
 aside {
-    display: flex;
-    float: right;
     height: 600px;
     margin-left: 2rem;
     padding-left: 1rem;
+    text-align: left;
 }
 
 #start {
@@ -81,7 +80,7 @@ aside {
     width: 70%;
     font-size: 1.2rem;
     font-weight: 800;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .rolls {
@@ -111,8 +110,7 @@ aside {
     display: flex;
     align-items: baseline;
     height: 135px;
-    border-top: 1px solid black;
-    margin-top: 5px;
+    padding-top: 5px;
 }
 
 .citiesContainer div {
