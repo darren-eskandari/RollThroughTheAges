@@ -459,7 +459,7 @@ const game = {
         $('#name').text(`Player: ${players[0].name}`);
         $('#round').text(`Round: ${game.currentRound}`);
         $('#food').text(`Food: ${players[0].food}`);
-        $('#workers').text(`Available Workers: ${players[0].availableWorkers}`);
+        $('#workers').text(`Workers: ${players[0].availableWorkers}`);
         
         // works - cities
         $('#city1').html(`<img src="${players[0].works.city1.image}"><br>`);

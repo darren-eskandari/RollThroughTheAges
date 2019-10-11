@@ -27,6 +27,27 @@
     width: 600px;
 }
 
+#playerInfo {
+    width: 420px;
+    display: flex;
+    text-align: left;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
+#activePlayer {
+    width: 170px;
+}
+
+#assets {
+    width: 90px;
+}
+
+.score {
+    text-align: right;
+    width: 140px;
+}
+
 .rolls img {
     width: 40px;
     margin: 0 2px;
