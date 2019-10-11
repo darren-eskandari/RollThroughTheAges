@@ -4,12 +4,14 @@
     box-sizing: border-box;
 }
 
+body {
+    background-image: url("../images/papyrus.jpg");
+    background-size: cover;
+}
+
 .container {
     width: 100%;
     padding: 40px 20px;
-    background-image: url("../images/papyrus.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
     display: flex;
     align-items: center;
     flex-direction: column;
