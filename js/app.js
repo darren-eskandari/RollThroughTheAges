@@ -4,7 +4,7 @@ class Player {
         this.name = name;
         this.isStartPlayer = true;
         this.citiesBuilt = 3;
-        this.monumentsBuilt = [];
+        this.monumentsBuilt = 0;
         this.food = 3;
         this.availableWorkers = 0;
         this.score = {
@@ -53,6 +53,7 @@ class Player {
             completed: false,
             score: 0,
             cityBuilt: 1,
+            monumentBuilt: 0,
             image: 'images/city4.png',
         },
         city5: {
@@ -61,6 +62,7 @@ class Player {
             completed: false,
             score: 0,
             cityBuilt: 1,
+            monumentBuilt: 0,
             image: 'images/city5.png',
         },
         city6: {
@@ -69,6 +71,7 @@ class Player {
             completed: false,
             score: 0,
             cityBuilt: 1,
+            monumentBuilt: 0,
             image: 'images/city6.png',
         },
         city7: {
@@ -77,6 +80,7 @@ class Player {
             completed: false,
             score: 0,
             cityBuilt: 1,
+            monumentBuilt: 0,
             image: 'images/city7.png',
         },
         stepPyramid: {
@@ -85,6 +89,7 @@ class Player {
             completed: false,
             score: 1,
             cityBuilt: 0,
+            monumentBuilt: 1,
             image: 'images/stepPyramid.png',
         },
         stoneCircle: {
@@ -93,6 +98,7 @@ class Player {
             completed: false,
             score: 2,
             cityBuilt: 0,
+            monumentBuilt: 1,
             image: 'images/stoneCircle.png',
         },
         temple: {
@@ -101,6 +107,7 @@ class Player {
             completed: false,
             score: 4,
             cityBuilt: 0,
+            monumentBuilt: 1,
             image: 'images/temple.png',
         },
         obelisk: {
@@ -109,6 +116,7 @@ class Player {
             completed: false,
             score: 6,
             cityBuilt: 0,
+            monumentBuilt: 1,
             image: 'images/obelisk.png',
         },
         hangingGarden: {
@@ -117,6 +125,7 @@ class Player {
             completed: false,
             score: 8,
             cityBuilt: 0,
+            monumentBuilt: 1,
             image: 'images/hangingGarden.png',
         },
         greatWall: {
@@ -125,6 +134,7 @@ class Player {
             completed: false,
             score: 10,
             cityBuilt: 0,
+            monumentBuilt: 1,
             image: 'images/greatWall.png',
         },
         greatPyramid: {
@@ -133,6 +143,7 @@ class Player {
             completed: false,
             score: 12,
             cityBuilt: 0,
+            monumentBuilt: 1,
             image: 'images/greatPyramid.png',
         }
     }
@@ -320,13 +331,12 @@ const game = {
             $('#keepReroll').remove();
             $('#rerollAgain').remove();
             $('#firstResults').text('');
-            // this.secondReroll();
+            this.secondReroll();
         });        
     },
 
     // generate final reroll 
     secondReroll(){
-        this.audio2.play();
         for (let i = 0; i < this.rerollResult.length; i++){
             const randomResult = Math.floor(Math.random() * this.diceResults.length);
             this.finalResult.push(this.diceResults[randomResult]);
@@ -336,6 +346,7 @@ const game = {
         this.finalResult.map(item => {
             $('#finalResult').append(`<img src="${item.image}">`);
         });
+        // this.audio2.play();
         this.assignResults();
     },
 
@@ -397,17 +408,20 @@ const game = {
                 // $('select').on('change', (e) => console.log(e.target.value));
                 // $('select').on('change', (e) => console.log(e.target.parentNode.id));
                 $('select').change((e) => { 
-                    // const targetProgress = players[0].works[`${e.target.parentNode.id}`].progress;
-                    // console.log(targetProgress, 'target progress')
                     players[0].availableWorkers -= e.target.value;
                     players[0].works[`${e.target.parentNode.id}`].progress += Number(e.target.value);
                     if (players[0].works[`${e.target.parentNode.id}`].progress === players[0].works[`${e.target.parentNode.id}`].complete){
                         players[0].works[`${e.target.parentNode.id}`].completed = true;
                         players[0].score.monuments += players[0].works[`${e.target.parentNode.id}`].score;
                         players[0].citiesBuilt += players[0].works[`${e.target.parentNode.id}`].cityBuilt;
+                        players[0].monumentsBuilt += players[0].works[`${e.target.parentNode.id}`].monumentBuilt;
                         players[0].works[`${e.target.parentNode.id}`].image = 'completed/' + players[0].works[`${e.target.parentNode.id}`].image;
                         $(e.target).parent().removeClass('incomplete');
                         players[0].calculateScore();
+                        // if (e.target.parentNode.class === 'monument'){
+                        //     players[0].monumentsBuilt.push(players[0].works[`${e.target.parentNode.id}`]);
+                        // }
+                        // console.log(`${e.target.parent().attr('class')}`)
                     }
                     this.render();
                     // if (players[0].availableWorkers === 0) {
@@ -458,7 +472,12 @@ const game = {
         this.currentRound++
 
         this.render();
-        const nextRound = alert('Ready for the next round?')
+        const nextRound = alert('Ready for the next round?');
+
+        if (players[0].monumentsBuilt == '7'){
+            console.log('game over')
+        }
+
         this.audio3.play();
         this.startRound();
     },
