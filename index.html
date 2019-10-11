@@ -10,12 +10,13 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
 </head>
 <body>
+    <!-- <aside>not really sure how this all works yet</aside> -->
     <div class="container">
         <div id="start">
             Click to Start
             <img src="images/cover.jpg">
         </div>
-
+        
         <div id="playerInfo">
             <div id="activePlayer">
                 <div id="name"></div>
@@ -41,12 +42,18 @@
             </div>
         </div>
         <div class="rolls">
+            <audio id="diceSound" preload="auto">
+                <source src="http://www.sounds.beachware.com/2illionzayp3may/mbunhtlz/DICE.mp3">
+            </audio>
+            <audio id="diceKeep" preload="auto">
+                <source src="http://cd.textfiles.com/itcontinues/WIN/YTB22/ONEDICE.WAV">
+            </audio>
             <div id="rollDice" class="button"></div>
             <div id="finalResult"></div>
             <div id="rerollResults"></div>
             <div id="firstResults"></div>
         </div>
-
+        
         
         <div class="worksContainer">
             <div class="citiesContainer">

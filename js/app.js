@@ -183,6 +183,8 @@ const game = {
     currentRound: 1,
     phases: ['rollDicePhase', 'assignResultsPhase', 'buildWorkPhase', 'cleanUpPhase'],    
     currentPhase: null,
+    audio: $('#diceSound')[0],
+    audio2: $('#diceKeep')[0],
 
     diceResults: 
     [
@@ -223,11 +225,12 @@ const game = {
     finalResult: [],
 
     startRound(){
-        $('#rollDice').text(`Roll Dice`)
+        $('#rollDice').text('Roll Dice')
     },
 
     // initial dice roll
     rollDice(){
+        this.audio.play();
         this.currentPhase = this.phases[0];
         console.log(this.currentPhase);
         for (let i = 0; i < players[0].citiesBuilt; i++){
@@ -248,6 +251,7 @@ const game = {
         // skip rerolls and assign results
         $('.rolls').append('<div id="keepRoll" class="button">keep results</div>');
         $('#keepRoll').on('click', () => {
+            this.audio2.play();
             $('#keepRoll').remove();
             $('#rerollDice').remove();
             for (let i = 0; i < this.firstResult.length; i++){
@@ -264,6 +268,7 @@ const game = {
          // call the first reroll method
          $('.rolls').append('<div id="rerollDice" class="button">reroll results</div>');
          $('#rerollDice').on('click', () => {
+            this.audio.play();
             $('#keepRoll').remove();
             $('#rerollDice').remove();
             $('#firstResults').text('');
@@ -293,6 +298,7 @@ const game = {
         // skip second reroll and assign results
         $('.rolls').append('<div id="keepReroll" class="button">keep results</div>');
         $('#keepReroll').on('click', () => {
+            this.audio2.play();
             $('#keepReroll').remove();
             $('#rerollAgain').remove();
             for (let i = 0; i < this.rerollResult.length; i++){
@@ -309,15 +315,17 @@ const game = {
         // call second reroll 
         $('.rolls').append('<div id="rerollAgain" class="button">reroll results</div>');
         $('#rerollAgain').on('click', () => {
+            this.audio.play()
             $('#keepReroll').remove();
             $('#rerollAgain').remove();
             $('#firstResults').text('');
-            this.secondReroll();
+            // this.secondReroll();
         });        
     },
 
     // generate final reroll 
     secondReroll(){
+        this.audio2.play();
         for (let i = 0; i < this.rerollResult.length; i++){
             const randomResult = Math.floor(Math.random() * this.diceResults.length);
             this.finalResult.push(this.diceResults[randomResult]);
