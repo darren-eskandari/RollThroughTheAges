@@ -98,7 +98,7 @@
 #monumentsLeftMiddle {
     display: flex;
     justify-content: left;
-    align-items: center;
+    align-items: flex-start;
     height: 200px;
     justify-content: space-around;
 }
