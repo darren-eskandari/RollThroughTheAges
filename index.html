@@ -10,92 +10,94 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js'></script>
 </head>
 <body>
-    <!-- <aside>not really sure how this all works yet</aside> -->
+    <div id="start">
+        Click to Start
+        <img src="images/cover.jpg">
+    </div>
     <div class="container">
-        <div id="start">
-            Click to Start
-            <img src="images/cover.jpg">
-        </div>
-        <audio id="nextTurn">
-            <source src="http://www.gulfshoresrestaurant.com/menus/mp3/02.mp3">
-        </audio>
-        <div id="playerInfo">
-            <div id="activePlayer">
-                <div id="name"></div>
-                <div id="round"></div>
-            </div>
-            <div id="assets">
-                <div id="food"></div>
-                <div id="workers"></div>
-                <!-- <div id="goods">
-                    <div id="wood"></div>
-                    <div id="stone"></div>
-                    <div id="pottery"></div>
-                    <div id="textiles"></div>
-                    <div id="weapons"></div>
-                </div> -->
-            </div>
-            <div class="score">
-                <div id="developScore"></div>
-                <div id="monumentScore"></div>
-                <div id="bonusScore"></div>
-                <div id="disasterScore"></div>
-                <div id="totalScore"></div>
-            </div>
-        </div>
-        <div id="endGame"></div>
-        <div class="rolls">
-            <audio id="diceSound" preload="auto">
-                <source src="http://www.sounds.beachware.com/2illionzayp3may/mbunhtlz/DICE.mp3">
+        <main>
+            <audio id="nextTurn">
+                <source src="http://www.gulfshoresrestaurant.com/menus/mp3/02.mp3">
             </audio>
-            <audio id="diceKeep" preload="auto">
-                <source src="http://cd.textfiles.com/itcontinues/WIN/YTB22/ONEDICE.WAV">
-            </audio>
-            <div id="rollDice" class="button"></div>
-            <div id="finalResult"></div>
-            <div id="rerollResults"></div>
-            <div id="firstResults"></div>
-        </div>
-        
-        
-        <div class="worksContainer">
-            <div class="citiesContainer">
-                <div id="city1" class="works"></div>
-                <div id="city2" class="works"></div>
-                <div id="city3" class="works"></div>
-                <div id="city4" class="works incomplete"></div>
-                <div id="city5" class="works incomplete"></div>
-                <div id="city6" class="works incomplete"></div>
-                <div id="city7" class="works incomplete"></div>
-            </div>
-            <div class="monumentsContainer">
-                <div class="monumentsLeft">
-                    <div id="monumentsLeftTop">
-                        <div id="stepPyramid" class="works incomplete monument"></div>
-                        <div id="stoneCircle" class="works incomplete monument"></div>
-                        <div id="temple" class="works incomplete monument"></div>
-                    </div>
-                    <div id="monumentsLeftMiddle">
-                        <div id="hangingGarden" class="works incomplete monument"></div>
-                        <div id="greatPyramid" class="works incomplete monument"></div>
-                    </div>
-                    <div id="monumentsLeftBottom">
-                        <div id="greatWall" class="works incomplete monument"></div>
-                    </div>
+            <div id="playerInfo">
+                <div id="activePlayer">
+                    <div id="name"></div>
+                    <div id="round"></div>
                 </div>
-                <div class="monumentsRight">
-                    <div id="obelisk" class="works incomplete monument"></div>
+                <div id="assets">
+                    <div id="food"></div>
+                    <div id="workers"></div>
+                    <!-- <div id="goods">
+                        <div id="wood"></div>
+                        <div id="stone"></div>
+                        <div id="pottery"></div>
+                        <div id="textiles"></div>
+                        <div id="weapons"></div>
+                    </div> -->
+                </div>
+                <div class="score">
+                    <div id="developScore"></div>
+                    <div id="monumentScore"></div>
+                    <div id="bonusScore"></div>
+                    <div id="disasterScore"></div>
+                    <div id="totalScore"></div>
                 </div>
             </div>
-        </div>
-        
-        <!-- <div id="developments">
-            <div id="irrigation"></div>
-            <div id="agriculture"></div>
-            <div id="masonry"></div>
-            <div id="architecture"></div>
-            <div id="empire"></div>
-        </div> -->
+            <div id="endGame"></div>
+            <div class="rolls">
+                <audio id="diceSound" preload="auto">
+                    <source src="http://www.sounds.beachware.com/2illionzayp3may/mbunhtlz/DICE.mp3">
+                </audio>
+                <audio id="diceKeep" preload="auto">
+                    <source src="http://cd.textfiles.com/itcontinues/WIN/YTB22/ONEDICE.WAV">
+                </audio>
+                <div id="rollDice" class="button"></div>
+                <div id="finalResult"></div>
+                <div id="rerollResults"></div>
+                <div id="firstResults"></div>
+            </div>
+            
+            
+            <div class="worksContainer">
+                <div class="citiesContainer">
+                    <div id="city1" class="works"></div>
+                    <div id="city2" class="works"></div>
+                    <div id="city3" class="works"></div>
+                    <div id="city4" class="works incomplete"></div>
+                    <div id="city5" class="works incomplete"></div>
+                    <div id="city6" class="works incomplete"></div>
+                    <div id="city7" class="works incomplete"></div>
+                </div>
+                <div class="monumentsContainer">
+                    <div class="monumentsLeft">
+                        <div id="monumentsLeftTop">
+                            <div id="stepPyramid" class="works incomplete monument"></div>
+                            <div id="stoneCircle" class="works incomplete monument"></div>
+                            <div id="temple" class="works incomplete monument"></div>
+                        </div>
+                        <div id="monumentsLeftMiddle">
+                            <div id="hangingGarden" class="works incomplete monument"></div>
+                            <div id="greatPyramid" class="works incomplete monument"></div>
+                        </div>
+                        <div id="monumentsLeftBottom">
+                            <div id="greatWall" class="works incomplete monument"></div>
+                        </div>
+                    </div>
+                    <div class="monumentsRight">
+                        <div id="obelisk" class="works incomplete monument"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <div id="developments">
+                <div id="irrigation"></div>
+                <div id="agriculture"></div>
+                <div id="masonry"></div>
+                <div id="architecture"></div>
+                <div id="empire"></div>
+            </div> -->
+        </main>    
+        <aside></aside>
     </div>
     <script src="js/app.js"></script>
 </body>

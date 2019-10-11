@@ -4,7 +4,7 @@ class Player {
         this.name = name;
         this.isStartPlayer = true;
         this.citiesBuilt = 3;
-        this.monumentsBuilt = 6;
+        this.monumentsBuilt = 0;
         this.food = 3;
         this.availableWorkers = 0;
         this.score = {
@@ -238,11 +238,13 @@ const game = {
 
     startRound(){
         this.currentRound++;
-        $('#rollDice').text('Roll Dice')
+        $('aside').text("Click 'Roll Dice' to summon your labor force and harvest food for your cities.");
+        $('#rollDice').text('Roll Dice');
     },
 
     // initial dice roll
     rollDice(){
+        $('aside').text('All disasters are permanent, but you may re-roll your other dice twice during this phase. If you like your results, keep them and move on to the next phase.');
         this.audio.play();
         this.currentPhase = this.phases[0];
         console.log(this.currentPhase);
@@ -383,12 +385,15 @@ const game = {
         // players[0].calculateGoods();
         players[0].calculateScore();
 
+        alert(`You have mustered ${this.val.workers} worker to build your wonders. Your people have harvested ${this.val.food} to feed the people of your empire's ${players[0].citiesBuilt} cities, leaving ${players[0].food} food in your stores for leaner times.`);
+
         this.render();
         this.buildWorks();
     },
 
     // build works by assigning available workers
     buildWorks(){
+        $('aside').text('Build Cities or Monuments by clicking on them and assigning available workers.')
         this.currentPhase = this.phases[2]
         console.log(this.currentPhase);
         $('.rolls').append('<div id="endTurn" class="button">End Turn</div>');
