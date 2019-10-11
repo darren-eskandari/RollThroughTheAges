@@ -10,7 +10,6 @@ body {
     backdrop-filter: brightness(105%);
 }
 
-
 .container {
     padding: 40px 20px;
     display: flex;
@@ -35,7 +34,6 @@ aside {
     height: 600px;
     margin-left: 2rem;
     padding-left: 1rem;
-    /* box-shadow: inset 5px 0 5px -5px slategray; */
 }
 
 #start {

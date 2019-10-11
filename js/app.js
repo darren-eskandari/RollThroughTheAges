@@ -4,7 +4,7 @@ class Player {
         this.name = name;
         this.isStartPlayer = true;
         this.citiesBuilt = 3;
-        this.monumentsBuilt = 6;
+        this.monumentsBuilt = 0;
         this.food = 3;
         this.availableWorkers = 0;
         this.score = {
@@ -238,7 +238,7 @@ const game = {
 
     startRound(){
         this.currentRound++;
-        $('aside').text("Click 'Roll Dice' to summon your labor force and harvest food for your cities.");
+        $('aside').text("Click 'Roll Dice' to assemble your labor force and to harvest food for your cities.");
         $('#rollDice').text('Roll Dice');
     },
 
@@ -393,7 +393,7 @@ const game = {
 
     // build works by assigning available workers
     buildWorks(){
-        $('aside').text('Build Cities or Monuments by clicking on them and assigning available workers.')
+        $('aside').text('Build Cities or Monuments by clicking on them and assigning available workers.');
         this.currentPhase = this.phases[2]
         console.log(this.currentPhase);
         $('.rolls').append('<div id="endTurn" class="button">End Turn</div>');
@@ -424,16 +424,11 @@ const game = {
                         players[0].works[`${e.target.parentNode.id}`].image = 'completed/' + players[0].works[`${e.target.parentNode.id}`].image;
                         $(e.target).parent().removeClass('incomplete');
                         players[0].calculateScore();
-                        // if (e.target.parentNode.class === 'monument'){
-                        //     players[0].monumentsBuilt.push(players[0].works[`${e.target.parentNode.id}`]);
-                        // }
-                        // console.log(`${e.target.parent().attr('class')}`)
+                        if (players[0].availableWorkers == 0) {
+                            $('aside').append(`<br><br>You have assigned all of your available workers, click 'End Turn' to continue to the next turn.`)
+                        }
                     }
                     this.render();
-                    // if (players[0].availableWorkers === 0) {
-                    //     $('#endTurn').remove();
-                    //     this.endTurn();
-                    // }
                 });
             }
         });
